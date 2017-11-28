@@ -3,20 +3,23 @@
 
 int main()
 {
-	Game * game = new Game;
-	cout << "Game Created" << endl;
+	// Create Game
+	Game * MainGame = new Game;
 
-	if (game->Init(1280, 720, "Space Station Rescue"))
+	// Initialise Game
+	// Check if it is able to be initialised
+	if (MainGame->Init(1280, 720, "Game"))
 	{
-		cout << "Game Initialised" << endl;
-
-		cout << "Game Loop Starting" << endl;
-		game->Loop();
+		// Call Game Loop
+		MainGame->Loop();
 	}
 	else
 	{
-		cout << "Failed to initialise game" << endl;
+		cout << "Failed to Initialise Game..." << endl;
+		cout << "Exiting" << endl;
 	}
+	
+
 
 	return 0;
 }

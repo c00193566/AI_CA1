@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
-#include "SFML\Graphics.hpp"
+#include "RenderSystem.h"
+#include "SceneManager.h"
 
 using namespace sf;
 
@@ -14,10 +15,10 @@ private:
 	bool IsRunning;
 
 	// Render stuff
-	RenderWindow * Renderer = nullptr;
+	RenderSystem * Renderer;
 
 	// Game stuff
-
+	SceneManager SceneHandler;
 
 public:
 	Game();
@@ -27,5 +28,4 @@ public:
 	void Update();
 	void Render();
 	void EventHandler();
-
 };

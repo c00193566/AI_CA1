@@ -12,17 +12,14 @@ Game::~Game()
 
 bool Game::Init(int x, int y, string title)
 {
-	Renderer = new RenderWindow(VideoMode(x, y), title);
-
-	if (Renderer == nullptr)
-	{
-		return false;
-	}
+	Renderer = new RenderSystem(x, y, title);
 
 	CurrentTime = Time::Zero;
 	UpdateClock.restart();
 
 	IsRunning = true;
+
+	SceneHandler = SceneManager(Renderer);
 
 	return true;
 }
@@ -31,6 +28,8 @@ void Game::Loop()
 {
 	while (IsRunning)
 	{
+		IsRunning = SceneHandler.getScene()->Running();
+
 		EventHandler();
 
 		CurrentTime += UpdateClock.restart();
@@ -48,27 +47,21 @@ void Game::Loop()
 
 void Game::Update()
 {
+	unsigned int DeltaTime = CurrentTime.asSeconds();
 
+	SceneHandler.UpdateScene(DeltaTime);
 }
 
 void Game::Render()
 {
-	Renderer->clear(Color::White);
+	Renderer->getRenderer().clear(Color::Black);
 
-	// Place draw methods here
+	SceneHandler.RenderScene(Renderer);
 
-	Renderer->display();
+	Renderer->getRenderer().display();
 }
 
 void Game::EventHandler()
 {
-	Event event;
-
-	while (Renderer->pollEvent(event))
-	{
-		if (event.type == Event::Closed)
-		{
-			IsRunning = false;
-		}
-	}
+	SceneHandler.EventScene(Renderer);
 }
