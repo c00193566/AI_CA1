@@ -10,15 +10,11 @@ Player::~Player()
 
 }
 
-bool Player::Init(string Tag, string path, Vector2f position)
+bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 {
 	Type = Tag;
 
-	if (!(PlayerTexture.loadFromFile(path)))
-	{
-		cout << "Could not load texture for player" << endl;
-		return false;
-	}
+	PlayerTexture = LoadedTexture;
 
 	PlayerSprite.setTexture(PlayerTexture);
 
@@ -38,15 +34,11 @@ bool Player::Init(string Tag, string path, Vector2f position)
 	return true;
 }
 
-bool Player::Init(string Tag, string Path, float x, float y)
+bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 {
 	Type = Tag;
 
-	if (!(PlayerTexture.loadFromFile(Path)))
-	{
-		cout << "Could not load texture for player" << endl;
-		return false;
-	}
+	PlayerTexture = LoadedTexture;
 
 	PlayerSprite.setTexture(PlayerTexture);
 

@@ -18,8 +18,8 @@ private:
 public:
 	Player();
 	~Player();
-	bool Init(string Tag, string path, Vector2f position);
-	bool Init(string Tag, string path, float x, float y);
+	bool Init(string Tag, Texture & LoadedTexture, Vector2f position);
+	bool Init(string Tag, Texture & LoadedTexture, float x, float y);
 	void Render(RenderSystem *);
 	void Update(unsigned int);
 	void Movement();

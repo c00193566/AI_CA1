@@ -10,7 +10,7 @@ private:
 
 public:
 	Basic() {};
-	Basic(string Tag, string Path, float x, float y);
+	Basic(string Tag, Texture & LoadedTexture, float x, float y);
 	~Basic();
 	void Render(RenderSystem *);
 	void Update(unsigned int);

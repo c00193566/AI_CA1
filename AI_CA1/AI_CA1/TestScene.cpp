@@ -2,6 +2,7 @@
 
 TestScene::TestScene()
 {
+	// Set up listeners for input handler
 	InputHandler.AddListener(EventListener::Event::QUIT, this);
 	InputHandler.AddListener(EventListener::Event::UP, this);
 	InputHandler.AddListener(EventListener::Event::DOWN, this);
@@ -12,37 +13,50 @@ TestScene::TestScene()
 	InputHandler.AddListener(EventListener::Event::LEFTR, this);
 	InputHandler.AddListener(EventListener::Event::RIGHTR, this);
 
+	TextureHandler = TextureLoader::Instance();
+
+	TextureHandler->addTexture("Player", "Assets/Player.png");
+	TextureHandler->addTexture("Walkway_01", "Assets/Walkway_01.png");
+	TextureHandler->addTexture("Wall_TopLeft", "Assets/Wall_TopLeft.png");
+	TextureHandler->addTexture("Wall_BottomRight", "Assets/Wall_BottomRight.png");
+	TextureHandler->addTexture("Wall_BottomLeft", "Assets/Wall_BottomLeft.png");
+	TextureHandler->addTexture("Wall_TopRight", "Assets/Wall_TopRight.png");
+	TextureHandler->addTexture("Wall_Left", "Assets/Wall_Left.png");
+	TextureHandler->addTexture("Wall_Right", "Assets/Wall_Right.png");
+	TextureHandler->addTexture("Wall_Bottom", "Assets/Wall_Bottom.png");
+
+	// Set Up Player
 	PlayerObj = new Player;
-	PlayerObj->Init("Player", "Assets/Player.png", Vector2f(640, 360));
+	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
 
 	// First Room
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 640, 264));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 640, 360));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 640, 328));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 640, 296));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 608, 360));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 608, 328));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 608, 296));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 672, 360));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 672, 328));
-	Objects.push_back(new Basic("Walkway", "Assets/Walkway_01.png", 672, 296));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 264));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 360));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 328));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 296));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 360));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 328));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 296));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 360));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 328));
+	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 296));
 
 	// Walls
-	Objects.push_back(new Basic("Wall", "Assets/Wall_TopLeft.png", 576, 264));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_BottomRight.png", 608, 264));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_BottomLeft.png", 672, 264));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_TopRight.png", 704, 264));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Left.png", 576, 296));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Left.png", 576, 328));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Left.png", 576, 360));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Right.png", 704, 296));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Right.png", 704, 328));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Right.png", 704, 360));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Bottom.png", 608, 392));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Bottom.png", 640, 392));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_Bottom.png", 672, 392));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_BottomLeft.png", 576, 392));
-	Objects.push_back(new Basic("Wall", "Assets/Wall_BottomRight.png", 704, 392));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopLeft"), 576, 264));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 608, 264));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 672, 264));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopRight"), 704, 264));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 296));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 328));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 360));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 296));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 328));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 360));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 608, 392));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 640, 392));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 672, 392));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
+	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
 
 
 

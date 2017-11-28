@@ -1,13 +1,10 @@
 #include "Basic.h"
 
-Basic::Basic(string Tag, string Path, float x, float y)
+Basic::Basic(string Tag, Texture & LoadedTexture, float x, float y)
 {
 	Type = Tag;
 
-	if (!(BasicTexture.loadFromFile(Path)))
-	{
-		cout << "Could not load texture for player" << endl;
-	}
+	BasicTexture = LoadedTexture;
 
 	BasicSprite.setTexture(BasicTexture);
 

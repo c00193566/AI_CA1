@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Scene.h"
 #include "InputManager.h"
+#include "TextureLoader.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Basic.h"
@@ -13,6 +14,7 @@ private:
 	// Systems
 	InputManager InputHandler;
 	Camera SceneCamera;
+	TextureLoader * TextureHandler;
 
 	// GameObjects
 	Player* PlayerObj;
