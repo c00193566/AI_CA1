@@ -96,7 +96,6 @@ void Player::Input(string Movement)
 		if (Speed < MaxSpeed)
 		{
 			Speed += 0.05f;
-			cout << Speed << endl;
 		}
 	}
 	else if (Movement == "DOWN")
