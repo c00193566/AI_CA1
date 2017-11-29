@@ -22,7 +22,7 @@ public:
 	void Render(RenderSystem * Renderer);
 	void Update(unsigned int DT);
 
-	void Collision(GameObject * Object);
+	void Dead();
 
 	Sprite getSprite() { return BulletSprite; };
 	string getType() { return Type; };

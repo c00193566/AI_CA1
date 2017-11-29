@@ -52,13 +52,7 @@ void Bullet::Update(unsigned int DT)
 	}
 }
 
-void Bullet::Collision(GameObject * Object)
+void Bullet::Dead()
 {
-	if (Object->getType() == "Wall")
-	{
-		if (BulletSprite.getGlobalBounds().intersects(Object->getSprite().getGlobalBounds()))
-		{
-			Alive = false;
-		}
-	}
+	Alive = false;
 }

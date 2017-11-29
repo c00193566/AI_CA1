@@ -78,31 +78,20 @@ void TestScene::Update(unsigned int DT)
 
 			for (int j = 0; j < Bullets.size(); j++)
 			{
-				Bullets.at(j)->Collision(Objects.at(i));
-			}
-		}
-		else if (Objects.at(i)->getType() == "Bullet")
-		{
-			Bullet * BulletObj = static_cast<Bullet*>(Objects.at(i));
-
-			if (!BulletObj->getAlive())
-			{
-				Objects.erase(Objects.begin() + i);
-				RemoveBullet();
-				CurrentBullets--;
-				break;
+				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
 			}
 		}
 	}
-}
 
-void TestScene::RemoveBullet()
-{
+	// Update bullets
 	for (int i = 0; i < Bullets.size(); i++)
 	{
+		Bullets.at(i)->Update(DT);
+
 		if (!Bullets.at(i)->getAlive())
 		{
 			Bullets.erase(Bullets.begin() + i);
+			CurrentBullets--;
 		}
 	}
 }
@@ -134,6 +123,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Objects.size(); i++)
 	{
 		Objects.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		Bullets.at(i)->Render(Renderer);
 	}
 
 	Renderer->setView(SceneCamera.getView());
@@ -179,8 +173,7 @@ void TestScene::onEvent(EventListener::Event evt)
 	case EventListener::Event::SHOOT:
 		if (CurrentBullets < MaxBullets)
 		{
-			Objects.push_back(new Bullet("Bullet", TextureHandler->getTexture("Bullet"), PlayerObj->getPosition(), PlayerObj->getOrientation()));
-			Bullets.push_back(static_cast<Bullet*>(Objects.at(Objects.size() - 1)));
+			Bullets.push_back(new Bullet("Bullet", TextureHandler->getTexture("Bullet"), PlayerObj->getPosition(), PlayerObj->getOrientation()));
 			CurrentBullets++;
 		}
 		break;
