@@ -27,6 +27,27 @@ static struct Vector
 			return Vector2f(0, 0);
 		}
 	};
+
+	static float GetOrientation(float CurrentOrientation, Vector2f Velocity)
+	{
+		float rotation = CurrentOrientation;
+
+		if (Length(Velocity) > 0)
+		{
+			rotation = atan2f(Velocity.x, -Velocity.y);
+
+			rotation = RadsToDegs(rotation);
+		}
+
+		return rotation;
+	}
+
+	static float RadsToDegs(float Rads)
+	{
+		float degs = Rads * 180 / 3.14;
+
+		return degs;
+	}
 };
 
 class GameObject
@@ -36,6 +57,7 @@ public:
 	virtual void Update(unsigned int) = 0;
 	virtual Sprite getSprite() = 0;
 	virtual string getType() = 0;
+	virtual Vector2f getPosition() = 0;
 
 protected:
 	string Type;

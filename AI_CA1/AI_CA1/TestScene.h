@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Basic.h"
 #include "Bullet.h"
+#include "Worker.h"
 #include "Collision.h"
 
 class TestScene : public Scene, public EventListener

@@ -3,6 +3,8 @@
 
 int main()
 {
+	srand(time(NULL));
+
 	// Create Game
 	Game * MainGame = new Game;
 
@@ -18,8 +20,6 @@ int main()
 		cout << "Failed to Initialise Game..." << endl;
 		cout << "Exiting" << endl;
 	}
-	
-
 
 	return 0;
 }
