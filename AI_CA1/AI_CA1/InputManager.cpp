@@ -56,6 +56,9 @@ void InputManager::ProcessInput(RenderSystem * Renderer)
 			case Keyboard::Down:
 				Dispatch(EventListener::Event::DOWN);
 				break;
+			case Keyboard::Space:
+				Dispatch(EventListener::Event::SHOOT);
+				break;
 			}
 			break;
 

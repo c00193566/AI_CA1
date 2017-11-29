@@ -12,7 +12,9 @@ TestScene::TestScene()
 	InputHandler.AddListener(EventListener::Event::DOWNR, this);
 	InputHandler.AddListener(EventListener::Event::LEFTR, this);
 	InputHandler.AddListener(EventListener::Event::RIGHTR, this);
+	InputHandler.AddListener(EventListener::Event::SHOOT, this);
 
+	// TextHandler
 	TextureHandler = TextureLoader::Instance();
 
 	// Set Up Player
@@ -50,7 +52,6 @@ TestScene::TestScene()
 
 	// Add in Worker
 	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-
 	UP = false;
 	DOWN = false;
 	RIGHT = false;
@@ -76,11 +77,28 @@ void TestScene::Update(unsigned int DT)
 		if (Objects.at(i)->getType() == "Wall")
 		{
 			Collision::WallCollision(Objects.at(i), PlayerObj);
+
+			for (int j = 0; j < Bullets.size(); j++)
+			{
+				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
+			}
 		}
 		else if (Objects.at(i)->getType() == "Worker")
 		{
 			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
 			WorkerObj->FindTarget(Objects);
+		}
+	}
+
+	// Update bullets
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		Bullets.at(i)->Update(DT);
+
+		if (!Bullets.at(i)->getAlive())
+		{
+			Bullets.erase(Bullets.begin() + i);
+			CurrentBullets--;
 		}
 	}
 }
@@ -112,6 +130,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Objects.size(); i++)
 	{
 		Objects.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		Bullets.at(i)->Render(Renderer);
 	}
 
 	Renderer->setView(SceneCamera.getView());
@@ -153,6 +176,13 @@ void TestScene::onEvent(EventListener::Event evt)
 		break;
 	case EventListener::Event::RIGHTR:
 		RIGHT = false;
+		break;
+	case EventListener::Event::SHOOT:
+		if (CurrentBullets < MaxBullets)
+		{
+			Bullets.push_back(new Bullet("Bullet", TextureHandler->getTexture("Bullet"), PlayerObj->getPosition(), PlayerObj->getOrientation()));
+			CurrentBullets++;
+		}
 		break;
 	default:
 		break;

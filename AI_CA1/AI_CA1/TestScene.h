@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Basic.h"
+#include "Bullet.h"
 #include "Worker.h"
 #include "Collision.h"
 
@@ -20,6 +21,9 @@ private:
 	// GameObjects
 	Player* PlayerObj;
 	vector<GameObject*> Objects;
+	vector<Bullet*> Bullets;
+	int MaxBullets = 10;
+	int CurrentBullets = 0;
 
 	//Bools to keep track of button presses
 	bool UP;
@@ -37,5 +41,6 @@ public:
 	void Render(RenderSystem * Renderer);
 	void Event(RenderSystem * Renderer);
 	void onEvent(EventListener::Event);
+	void RemoveBullet();
 	bool Running() { return IsRunning; };
 };

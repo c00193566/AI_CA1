@@ -13,6 +13,7 @@ public:
 		LEFTR,
 		RIGHT,
 		RIGHTR,
+		SHOOT,
 		QUIT
 	};
 

@@ -29,4 +29,6 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return PlayerSprite; };
 	string getType() { return Type; };
+	Vector2f getVelocity() { return Velocity; };
+	float getOrientation() { return Orientation; };
 };

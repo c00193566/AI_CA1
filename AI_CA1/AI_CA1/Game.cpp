@@ -13,6 +13,7 @@ Game::Game()
 	TextureHandler->addTexture("Wall_Left", "Assets/Wall_Left.png");
 	TextureHandler->addTexture("Wall_Right", "Assets/Wall_Right.png");
 	TextureHandler->addTexture("Wall_Bottom", "Assets/Wall_Bottom.png");
+	TextureHandler->addTexture("Bullet", "Assets/Bullet.png");
 	TextureHandler->addTexture("Worker", "Assets/Worker.png");
 }
 
@@ -58,7 +59,7 @@ void Game::Loop()
 
 void Game::Update()
 {
-	unsigned int DeltaTime = CurrentTime.asSeconds();
+	unsigned int DeltaTime = CurrentTime.asMilliseconds();
 
 	SceneHandler.UpdateScene(DeltaTime);
 }
