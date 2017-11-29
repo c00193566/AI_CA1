@@ -16,4 +16,5 @@ public:
 	void Update(unsigned int);
 	Sprite getSprite() { return BasicSprite; };
 	string getType() { return Type; };
+	Vector2f getPosition() { return Position; };
 };

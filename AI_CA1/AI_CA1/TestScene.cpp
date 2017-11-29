@@ -48,7 +48,8 @@ TestScene::TestScene()
 	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
 	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
 
-
+	// Add in Worker
+	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 
 	UP = false;
 	DOWN = false;
@@ -75,6 +76,11 @@ void TestScene::Update(unsigned int DT)
 		if (Objects.at(i)->getType() == "Wall")
 		{
 			Collision::WallCollision(Objects.at(i), PlayerObj);
+		}
+		else if (Objects.at(i)->getType() == "Worker")
+		{
+			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
+			WorkerObj->FindTarget(Objects);
 		}
 	}
 }
