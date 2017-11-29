@@ -1,6 +1,8 @@
-﻿  Game.cpp
+﻿  TestScene.cpp
 c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(30): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
 c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\collision.h(9): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\game.cpp(60): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+  Bullet.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(30): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+  Generating Code...
   AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.exe
   AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)

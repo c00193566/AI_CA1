@@ -12,7 +12,9 @@ TestScene::TestScene()
 	InputHandler.AddListener(EventListener::Event::DOWNR, this);
 	InputHandler.AddListener(EventListener::Event::LEFTR, this);
 	InputHandler.AddListener(EventListener::Event::RIGHTR, this);
+	InputHandler.AddListener(EventListener::Event::SHOOT, this);
 
+	// TextHandler
 	TextureHandler = TextureLoader::Instance();
 
 	// Set Up Player
@@ -48,8 +50,6 @@ TestScene::TestScene()
 	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
 	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
 
-
-
 	UP = false;
 	DOWN = false;
 	RIGHT = false;
@@ -75,6 +75,34 @@ void TestScene::Update(unsigned int DT)
 		if (Objects.at(i)->getType() == "Wall")
 		{
 			Collision::WallCollision(Objects.at(i), PlayerObj);
+
+			for (int j = 0; j < Bullets.size(); j++)
+			{
+				Bullets.at(j)->Collision(Objects.at(i));
+			}
+		}
+		else if (Objects.at(i)->getType() == "Bullet")
+		{
+			Bullet * BulletObj = static_cast<Bullet*>(Objects.at(i));
+
+			if (!BulletObj->getAlive())
+			{
+				Objects.erase(Objects.begin() + i);
+				RemoveBullet();
+				CurrentBullets--;
+				break;
+			}
+		}
+	}
+}
+
+void TestScene::RemoveBullet()
+{
+	for (int i = 0; i < Bullets.size(); i++)
+	{
+		if (!Bullets.at(i)->getAlive())
+		{
+			Bullets.erase(Bullets.begin() + i);
 		}
 	}
 }
@@ -147,6 +175,14 @@ void TestScene::onEvent(EventListener::Event evt)
 		break;
 	case EventListener::Event::RIGHTR:
 		RIGHT = false;
+		break;
+	case EventListener::Event::SHOOT:
+		if (CurrentBullets < MaxBullets)
+		{
+			Objects.push_back(new Bullet("Bullet", TextureHandler->getTexture("Bullet"), PlayerObj->getPosition(), PlayerObj->getOrientation()));
+			Bullets.push_back(static_cast<Bullet*>(Objects.at(Objects.size() - 1)));
+			CurrentBullets++;
+		}
 		break;
 	default:
 		break;
