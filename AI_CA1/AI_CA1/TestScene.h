@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "InputManager.h"
 #include "TextureLoader.h"
+#include "GameData.h"
+#include "Node.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Basic.h"
@@ -21,6 +23,7 @@ private:
 	// GameObjects
 	Player* PlayerObj;
 	vector<GameObject*> Objects;
+	vector<Node*> Nodes;
 	vector<Bullet*> Bullets;
 	int MaxBullets = 10;
 	int CurrentBullets = 0;
@@ -37,10 +40,10 @@ private:
 public:
 	TestScene();
 	~TestScene() {};
+	void Initialise();
 	void Update(unsigned int);
 	void Render(RenderSystem * Renderer);
 	void Event(RenderSystem * Renderer);
 	void onEvent(EventListener::Event);
-	void RemoveBullet();
 	bool Running() { return IsRunning; };
 };

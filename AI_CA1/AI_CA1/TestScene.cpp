@@ -21,43 +21,32 @@ TestScene::TestScene()
 	PlayerObj = new Player;
 	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
 
-	// First Room
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 264));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 296));
-
-	// Walls
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopLeft"), 576, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 608, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 672, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopRight"), 704, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 608, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 640, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 672, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
-
-	// Add in Worker
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 	UP = false;
 	DOWN = false;
 	RIGHT = false;
 	LEFT = false;
 
 	IsRunning = true;
+}
+
+void TestScene::Initialise()
+{
+	for (int i = 0; i < GameData::m_maxGameObjects; i++)
+	{
+		if (GameData::m_gameObjectVector.at(i).type == "Walkway" || GameData::m_gameObjectVector.at(i).type == "Wall")
+		{
+			Objects.push_back(new Basic(GameData::m_gameObjectVector.at(i).type, TextureHandler->getTexture(GameData::m_gameObjectVector.at(i).texture),
+				GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y));
+			if (GameData::m_gameObjectVector.at(i).type == "Walkway")
+			{
+				Nodes.push_back(new Node(Vector2f(GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y)));
+			}
+		}
+	}
+
+	// Add in Worker
+	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -68,6 +57,18 @@ void TestScene::Update(unsigned int DT)
 	// Player Updates
 	PlayerObj->Update(DT);
 	PlayerMovement();
+
+	//Update Nodes
+	for (int i = 0; i < Nodes.size(); i++)
+	{
+		for (int j = 0; j < Objects.size(); j++)
+		{
+			if (!(Objects.at(j)->getType() == "Walkway" || Objects.at(j)->getType() == "Wall"))
+			{
+				Nodes.at(i)->Update(Objects.at(j)->getPosition());
+			}
+		}
+	}
 
 	// Update GameObjects
 	for (int i = 0; i < Objects.size(); i++)
@@ -86,7 +87,7 @@ void TestScene::Update(unsigned int DT)
 		else if (Objects.at(i)->getType() == "Worker")
 		{
 			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-			WorkerObj->FindTarget(Objects);
+			WorkerObj->FindTarget(Nodes);
 		}
 	}
 

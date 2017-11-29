@@ -1,0 +1,279 @@
+{
+  "general_game_data": {
+    "global_settings": {
+      "font_file": "",
+      "sfx": {
+
+      }
+    },
+    "TestScene": {
+      "max_game_objects": 43,
+      "GameObjects": [
+        {
+          "x": 640,
+          "y": 264,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 360,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 328,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 296,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 608,
+          "y": 360,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 608,
+          "y": 328,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 608,
+          "y": 296,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 672,
+          "y": 360,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 672,
+          "y": 328,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 672,
+          "y": 296,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 232,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 200,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 640,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 608,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 576,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 544,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 512,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 608,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 576,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 544,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 512,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 576,
+          "y": 264,
+          "Texture": "Wall_TopLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 608,
+          "y": 264,
+          "Texture": "Wall_BottomRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 264,
+          "Texture": "Wall_BottomLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 264,
+          "Texture": "Wall_TopRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 576,
+          "y": 296,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 576,
+          "y": 328,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 576,
+          "y": 360,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 296,
+          "Texture": "Wall_Right",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 328,
+          "Texture": "Wall_Right",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 360,
+          "Texture": "Wall_Right",
+          "Type": "Wall"
+        },
+        {
+          "x": 608,
+          "y": 392,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 640,
+          "y": 392,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 392,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 576,
+          "y": 392,
+          "Texture": "Wall_BottomLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 392,
+          "Texture": "Wall_BottomRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 608,
+          "y": 232,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 608,
+          "y": 200,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 608,
+          "y": 168,
+          "Texture": "Wall_TopRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 232,
+          "Texture": "Wall_Right",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 200,
+          "Texture": "Wall_Right",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        }
+      ]
+    }
+  }
+}

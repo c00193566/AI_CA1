@@ -3,6 +3,7 @@
 #include "RenderSystem.h"
 #include "SceneManager.h"
 #include "TextureLoader.h"
+#include "LevelLoader.h"
 
 using namespace sf;
 
@@ -19,6 +20,7 @@ private:
 	RenderSystem * Renderer;
 
 	// Game stuff
+	LevelLoader LoadData;
 	SceneManager SceneHandler;
 	TextureLoader * TextureHandler;
 

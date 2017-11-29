@@ -35,9 +35,9 @@ void SceneManager::ChangeStates(SceneManager::Scenes newScene)
 	}
 }
 
-void SceneManager::LoadNextLevel(RenderWindow& r, SceneManager::Scenes next)
+void SceneManager::LoadNextLevel()
 {
-
+	m_scene->Initialise();
 }
 
 void SceneManager::UpdateScene(unsigned int DeltaTime)

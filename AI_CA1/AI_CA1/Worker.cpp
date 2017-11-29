@@ -67,37 +67,33 @@ void Worker::Movement()
 		WorkerSprite.setPosition(Position);
 }
 
-void Worker::FindTarget(vector<GameObject*> Objects)
+void Worker::FindTarget(vector<Node*> Nodes)
 {
 	if (!TargetFound)
 	{
-		vector<GameObject*> Walkway;
+		vector<Node*> PossibleTargets;
 
-		for (int i = 0; i < Objects.size(); i++)
+		for (int i = 0; i < Nodes.size(); i++)
 		{
-			if (Objects.at(i)->getType() == "Walkway")
-			{
-				Walkway.push_back(Objects.at(i));
-			}
-		}
-
-		vector<GameObject*> PossibleTargets;
-
-		for (int i = 0; i < Walkway.size(); i++)
-		{
-			Vector2f Difference = Position - Walkway.at(i)->getPosition();
+			Vector2f Difference = Position - Nodes.at(i)->getPosition();
 			float Distance = Vector::Length(Difference);
 
 			if (!(Distance > 32 || Distance == 0))
 			{
-				PossibleTargets.push_back(Walkway.at(i));
+				if (!(Nodes.at(i)->Occupied()))
+				{
+					PossibleTargets.push_back(Nodes.at(i));
+				}
 			}
 		}
 
-		int RandomChoice = rand() % PossibleTargets.size();
+		if (PossibleTargets.size() != NULL)
+		{
+			int RandomChoice = rand() % PossibleTargets.size();
 
-		Target = PossibleTargets.at(RandomChoice)->getPosition();
+			Target = PossibleTargets.at(RandomChoice)->getPosition();
 
-		TargetFound = true;
+			TargetFound = true;
+		}
 	}
 }

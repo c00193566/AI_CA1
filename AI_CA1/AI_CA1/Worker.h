@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "GameObject.h"
+#include "Node.h"
 
 class Worker : public GameObject
 {
@@ -21,7 +22,7 @@ public:
 	void Render(RenderSystem *);
 	void Update(unsigned int);
 	void Movement();
-	void FindTarget(vector<GameObject*> Objects);
+	void FindTarget(vector<Node*> Nodes);
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return WorkerSprite; };
 	string getType() { return Type; };

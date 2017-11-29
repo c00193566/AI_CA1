@@ -12,6 +12,7 @@ public:
 	virtual void Render(RenderSystem * Renderer) = 0;
 	virtual void Event(RenderSystem * Renderer) = 0;
 	virtual bool Running() = 0;
+	virtual void Initialise() = 0;
 
 protected:
 	bool IsRunning;

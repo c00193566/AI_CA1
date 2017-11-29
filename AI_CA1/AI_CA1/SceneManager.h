@@ -16,7 +16,7 @@ public:
 	~SceneManager();
 	//Switches between the scenes
 	static void ChangeStates(Scenes newScene);
-	void LoadNextLevel(RenderWindow&, Scenes);
+	void LoadNextLevel();
 
 
 	Scenes GetCurrentState()

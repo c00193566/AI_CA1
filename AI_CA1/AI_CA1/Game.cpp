@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game() : LoadData("GeneralGameData.json")
 {
 	TextureHandler = TextureLoader::Instance();
 
@@ -32,6 +32,10 @@ bool Game::Init(int x, int y, string title)
 	IsRunning = true;
 
 	SceneHandler = SceneManager(Renderer);
+
+	LoadData.getGameData("TestScene");
+
+	SceneHandler.LoadNextLevel();
 
 	return true;
 }
