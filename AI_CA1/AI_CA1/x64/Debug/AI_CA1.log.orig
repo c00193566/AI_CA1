@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+﻿  Collision.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(30): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
+  Bullet.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(30): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TestScene.cpp
+  SceneManager.cpp
+  Main.cpp
+  Game.cpp
+=======
+﻿  Worker.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+>>>>>>> 000de01f3d0e94ebbbfdcf0430e6122cb01ffc67
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.exe
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)
