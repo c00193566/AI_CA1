@@ -2,7 +2,17 @@
 
 Game::Game()
 {
+	TextureHandler = TextureLoader::Instance();
 
+	TextureHandler->addTexture("Player", "Assets/Player.png");
+	TextureHandler->addTexture("Walkway_01", "Assets/Walkway_01.png");
+	TextureHandler->addTexture("Wall_TopLeft", "Assets/Wall_TopLeft.png");
+	TextureHandler->addTexture("Wall_BottomRight", "Assets/Wall_BottomRight.png");
+	TextureHandler->addTexture("Wall_BottomLeft", "Assets/Wall_BottomLeft.png");
+	TextureHandler->addTexture("Wall_TopRight", "Assets/Wall_TopRight.png");
+	TextureHandler->addTexture("Wall_Left", "Assets/Wall_Left.png");
+	TextureHandler->addTexture("Wall_Right", "Assets/Wall_Right.png");
+	TextureHandler->addTexture("Wall_Bottom", "Assets/Wall_Bottom.png");
 }
 
 Game::~Game()

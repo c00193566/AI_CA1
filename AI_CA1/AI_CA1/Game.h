@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "RenderSystem.h"
 #include "SceneManager.h"
+#include "TextureLoader.h"
 
 using namespace sf;
 
@@ -19,6 +20,7 @@ private:
 
 	// Game stuff
 	SceneManager SceneHandler;
+	TextureLoader * TextureHandler;
 
 public:
 	Game();
