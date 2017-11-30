@@ -85,6 +85,11 @@ void Worker::FindTarget(vector<Node*> Nodes)
 					PossibleTargets.push_back(Nodes.at(i));
 				}
 			}
+
+			if (PossibleTargets.size() >= 4)
+			{
+				break;
+			}
 		}
 
 		if (PossibleTargets.size() != NULL)
