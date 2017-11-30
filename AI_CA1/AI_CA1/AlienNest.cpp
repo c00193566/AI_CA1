@@ -22,6 +22,8 @@ AlienNest::AlienNest(string Tag, Texture & LoadedTexture, float x, float y)
 	PlayerFound = false;
 
 	Range = 64;
+
+	MissileExists = false;
 }
 
 AlienNest::~AlienNest()
@@ -49,6 +51,19 @@ void AlienNest::FindPlayer(Vector2f PlayerPosition)
 		if (Distance <= Range)
 		{
 			PlayerFound = true;
+			FireMissile(PlayerPosition);
 		}
+	}
+}
+
+void AlienNest::FireMissile(Vector2f PlayerPosition)
+{
+	if (PlayerFound && !MissileExists)
+	{
+		MissileDirection = PlayerPosition - Position;
+		MissileDirection = Vector::Normalise(MissileDirection);
+
+		cout << "Direction to Player (" << MissileDirection.x << ", " << MissileDirection.y << ")" << endl;
+		MissileExists = true;
 	}
 }
