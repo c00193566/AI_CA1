@@ -66,7 +66,6 @@ void TestScene::Update(unsigned int DT)
 		{
 			if (!(Objects.at(j)->getType() == "Walkway" || Objects.at(j)->getType() == "Wall"))
 			{
-				cout << Objects.at(j)->getType() << endl << endl;
 				Nodes.at(i)->Update(Objects.at(j)->getPosition());
 			}
 		}
@@ -90,6 +89,11 @@ void TestScene::Update(unsigned int DT)
 		{
 			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
 			WorkerObj->FindTarget(Nodes);
+		}
+		else if (Objects.at(i)->getType() == "AlienNest")
+		{
+			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+			AlienObj->FindPlayer(PlayerObj->getPosition());
 		}
 	}
 
