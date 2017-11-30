@@ -10,6 +10,8 @@ private:
 	Vector2f Position;
 	float Range;
 	bool PlayerFound;
+	bool MissileExists;
+	Vector2f MissileDirection;
 
 public:
 	AlienNest();
@@ -21,4 +23,5 @@ public:
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
 	void FindPlayer(Vector2f);
+	void FireMissile(Vector2f);
 };
