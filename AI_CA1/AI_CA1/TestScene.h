@@ -11,6 +11,7 @@
 #include "Bullet.h"
 #include "Worker.h"
 #include "Collision.h"
+#include "AlienNest.h"
 
 class TestScene : public Scene, public EventListener
 {

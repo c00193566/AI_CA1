@@ -47,6 +47,7 @@ void TestScene::Initialise()
 	// Add in Worker
 	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Objects.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -65,6 +66,7 @@ void TestScene::Update(unsigned int DT)
 		{
 			if (!(Objects.at(j)->getType() == "Walkway" || Objects.at(j)->getType() == "Wall"))
 			{
+				cout << Objects.at(j)->getType() << endl << endl;
 				Nodes.at(i)->Update(Objects.at(j)->getPosition());
 			}
 		}

@@ -15,6 +15,7 @@ Game::Game() : LoadData("GeneralGameData.json")
 	TextureHandler->addTexture("Wall_Bottom", "Assets/Wall_Bottom.png");
 	TextureHandler->addTexture("Bullet", "Assets/Bullet.png");
 	TextureHandler->addTexture("Worker", "Assets/Worker.png");
+	TextureHandler->addTexture("AlienNest", "Assets/AlienNest.png");
 }
 
 Game::~Game()
