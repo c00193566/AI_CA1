@@ -7,7 +7,7 @@
       }
     },
     "TestScene": {
-      "max_game_objects": 43,
+      "max_game_objects": 64,
       "GameObjects": [
         {
           "x": 640,
@@ -66,6 +66,72 @@
         {
           "x": 672,
           "y": 296,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 672,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 672,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 704,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 736,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 768,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 704,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 736,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 768,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 704,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 736,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 768,
+          "y": 168,
           "Texture": "Walkway_01",
           "Type": "Walkway"
         },
@@ -148,8 +214,32 @@
           "Type": "Walkway"
         },
         {
+          "x": 512,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 544,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 576,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
           "x": 576,
           "y": 264,
+          "Texture": "Wall_TopLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 672,
+          "y": 168,
           "Texture": "Wall_TopLeft",
           "Type": "Wall"
         },
@@ -226,6 +316,42 @@
           "Type": "Wall"
         },
         {
+          "x": 512,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 544,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 576,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 704,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 736,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 768,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
           "x": 576,
           "y": 392,
           "Texture": "Wall_BottomLeft",
@@ -269,9 +395,9 @@
         },
         {
           "x": 672,
-          "y": 168,
-          "Texture": "Wall_Bottom",
-          "Type": "Wall"
+          "y": 200,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
         }
       ]
     }
