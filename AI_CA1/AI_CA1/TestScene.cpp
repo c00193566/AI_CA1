@@ -47,6 +47,7 @@ void TestScene::Initialise()
 	// Add in Worker
 	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Objects.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -88,6 +89,11 @@ void TestScene::Update(unsigned int DT)
 		{
 			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
 			WorkerObj->FindTarget(Nodes);
+		}
+		else if (Objects.at(i)->getType() == "AlienNest")
+		{
+			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+			AlienObj->FindPlayer(PlayerObj->getPosition());
 		}
 	}
 

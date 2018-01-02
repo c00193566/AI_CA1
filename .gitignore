@@ -7,3 +7,6 @@ AI_CA1/.vs/AI_CA1/v15/.suo
 *.pdb
 *.idb
 *.ilk
+*.vcxproj
+*.orig
+*.obj
