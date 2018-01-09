@@ -95,6 +95,10 @@ void TestScene::Update(unsigned int DT)
 			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
 			AlienObj->FindPlayer(PlayerObj->getPosition());
 		}
+		else if (Objects.at(i)->getType() == "Missile")
+		{
+
+		}
 	}
 
 	// Update bullets

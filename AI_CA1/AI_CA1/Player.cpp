@@ -135,6 +135,6 @@ void Player::Collision(string ObjType)
 	}
 	else if (ObjType == "Worker")
 	{
-		cout << "Worker Collision" << endl;
+		
 	}
 }

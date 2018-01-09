@@ -1,7 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "TextureLoader.h"
 
-class Missile : public GameObject
+class Missile
 {
 private:
 	Texture MissileTexture;
@@ -10,14 +11,19 @@ private:
 	Vector2f Velocity;
 	float Speed;
 	float Orientation;
-	Vector2f TargetPosition;
+	float TimeAlive;
+	const float TimeToDie = 5.0f;
+	bool Alive;
 
 public:
-	Missile();
-	~Missile();
-	void Update(unsigned int);
+	Missile() {};
+	Missile(Vector2f StartPosition);
+	~Missile() {};
+	void Update(unsigned int, Vector2f);
 	void Render(RenderSystem*);
+	void Pursuit(Vector2f);
+	void TimeUpdate(unsigned int);
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return MissileSprite; };
-	string getType() { return Type; };
+	bool getAlive() { return Alive; };
 };
