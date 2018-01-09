@@ -1,10 +1,10 @@
 #include "Collision.h"
 
-void Collision::WallCollision(GameObject * Wall, Player * PlayerObj)
+void Collision::PlayerCollision(GameObject * Obj, Player * PlayerObj)
 {
-	if (Wall->getSprite().getGlobalBounds().intersects(PlayerObj->getSprite().getGlobalBounds()))
+	if (Obj->getSprite().getGlobalBounds().intersects(PlayerObj->getSprite().getGlobalBounds()))
 	{
-		PlayerObj->Collision(Wall->getType());
+		PlayerObj->Collision(Obj->getType());
 	}
 }
 
