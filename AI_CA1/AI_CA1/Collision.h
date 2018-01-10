@@ -6,6 +6,6 @@
 
 static struct Collision
 {
-	static void WallCollision(GameObject*, Player*);
+	static void PlayerCollision(GameObject*, Player*);
 	static void BulletWallCollision(GameObject*, Bullet*);
 };

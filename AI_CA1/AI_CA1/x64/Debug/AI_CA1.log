@@ -1,5 +1,5 @@
 ﻿  AlienNest.cpp
-c:\users\gameuser\documents\ai project\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\gameuser\documents\ai project\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  AI_CA1.vcxproj -> C:\Users\gameuser\Documents\AI Project\AI_CA1\AI_CA1\x64\Debug\AI_CA1.exe
-  AI_CA1.vcxproj -> C:\Users\gameuser\Documents\AI Project\AI_CA1\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.exe
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)

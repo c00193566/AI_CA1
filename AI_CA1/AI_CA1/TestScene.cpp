@@ -76,10 +76,10 @@ void TestScene::Update(unsigned int DT)
 	{
 		Objects.at(i)->Update(DT);
 
+		Collision::PlayerCollision(Objects.at(i), PlayerObj);
+
 		if (Objects.at(i)->getType() == "Wall")
 		{
-			Collision::WallCollision(Objects.at(i), PlayerObj);
-
 			for (int j = 0; j < Bullets.size(); j++)
 			{
 				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
@@ -94,6 +94,7 @@ void TestScene::Update(unsigned int DT)
 		{
 			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
 			AlienObj->FindPlayer(PlayerObj->getPosition());
+			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
 		}
 	}
 

@@ -1,10 +1,24 @@
 #include "Collision.h"
+#include "AlienNest.h"
 
-void Collision::WallCollision(GameObject * Wall, Player * PlayerObj)
+void Collision::PlayerCollision(GameObject * Obj, Player * PlayerObj)
 {
-	if (Wall->getSprite().getGlobalBounds().intersects(PlayerObj->getSprite().getGlobalBounds()))
+	if (Obj->getSprite().getGlobalBounds().intersects(PlayerObj->getSprite().getGlobalBounds()))
 	{
-		PlayerObj->Collision(Wall->getType());
+		PlayerObj->Collision(Obj->getType());
+	}
+
+	if (Obj->getType() == "AlienNest")
+	{
+		AlienNest * AlienObj = static_cast<AlienNest*>(Obj);
+		for (int i = 0; i < AlienObj->getMissiles().size(); i++)
+		{
+			if (AlienObj->getMissiles().at(i)->getSprite().getGlobalBounds().intersects(PlayerObj->getSprite().getGlobalBounds()))
+			{
+				AlienObj->getMissiles().at(i)->setAlive(false);
+				PlayerObj->Collision("Missile");
+			}
+		}
 	}
 }
 

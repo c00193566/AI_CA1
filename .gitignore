@@ -1,0 +1,12 @@
+
+*.db
+*.db
+AI_CA1/.vs/AI_CA1/v15/.suo
+*.tlog
+*.log
+*.pdb
+*.idb
+*.ilk
+*.vcxproj
+*.orig
+*.obj
