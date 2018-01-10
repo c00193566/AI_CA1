@@ -94,10 +94,7 @@ void TestScene::Update(unsigned int DT)
 		{
 			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
 			AlienObj->FindPlayer(PlayerObj->getPosition());
-		}
-		else if (Objects.at(i)->getType() == "Missile")
-		{
-
+			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
 		}
 	}
 

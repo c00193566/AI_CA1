@@ -23,7 +23,7 @@ AlienNest::AlienNest(string Tag, Texture & LoadedTexture, float x, float y)
 
 	TimeDelay = 3.0f;
 
-	Range = 64;
+	Range = 128;
 
 	MissileExists = false;
 }
@@ -45,9 +45,13 @@ void AlienNest::Render(RenderSystem * Renderer)
 
 void AlienNest::Update(unsigned int DT)
 {
+}
+
+void AlienNest::UpdateMissile(unsigned int DT, Vector2f TargetPosition, Vector2f TargetVelocity)
+{
 	for (int i = 0; i < Missiles.size(); i++)
 	{
-		Missiles.at(i)->Update(DT, Vector2f(0,0));
+		Missiles.at(i)->Update(DT, TargetPosition, TargetVelocity);
 	}
 
 	UpdateMissileInfo();

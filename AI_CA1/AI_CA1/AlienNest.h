@@ -23,6 +23,7 @@ public:
 	~AlienNest();
 	void Render(RenderSystem *);
 	void Update(unsigned int);
+	void UpdateMissile(unsigned int, Vector2f, Vector2f);
 	Sprite getSprite() { return AlienNestSprite; };
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
