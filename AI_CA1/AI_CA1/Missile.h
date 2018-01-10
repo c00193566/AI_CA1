@@ -28,4 +28,5 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return MissileSprite; };
 	bool getAlive() { return Alive; };
+	void setAlive(bool set) { Alive = set; };
 };

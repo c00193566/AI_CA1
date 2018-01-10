@@ -78,6 +78,8 @@ void AlienNest::FindPlayer(Vector2f PlayerPosition)
 	{
 		TimeDelay += 1.0f / 60.0f;
 
+		cout << TimeDelay << endl;
+
 		if (TimeDelay > 2.0f)
 		{
 			Vector2f Difference = Position - PlayerPosition;

@@ -30,4 +30,5 @@ public:
 	void UpdateMissileInfo();
 	void FindPlayer(Vector2f);
 	void FireMissile(Vector2f);
+	vector<Missile*> getMissiles() { return Missiles; };
 };

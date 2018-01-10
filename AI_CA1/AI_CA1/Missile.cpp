@@ -18,7 +18,7 @@ Missile::Missile(Vector2f StartPosition)
 
 	TimeAlive = 0.0f;
 
-	MaxSpeed = 1.0f;
+	MaxSpeed = 2.0f;
 
 	Alive = true;
 }

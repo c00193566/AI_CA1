@@ -8,6 +8,8 @@ class Camera
 {
 private:
 	View CameraView;
+	float Width;
+	float Height;
 
 public:
 	Camera();
