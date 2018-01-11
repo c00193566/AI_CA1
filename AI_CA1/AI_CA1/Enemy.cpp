@@ -24,8 +24,11 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Speed = 1.0f;
 
-	TargetFound = false;
-	TargetReached = false;
+	Range = 160;
+
+	Wander = false;
+
+	Culling = false;
 }
 
 Enemy::~Enemy()
@@ -40,60 +43,10 @@ void Enemy::Render(RenderSystem * Renderer)
 
 void Enemy::Update(unsigned int DT)
 {
-	if (TargetFound)
-	{
-		Movement();
-	}
 
-	if (Position == Target)
-	{
-		TargetFound = false;
-	}
 }
 
 void Enemy::Movement()
 {
-		Velocity = Target - Position;
-
-		Velocity = Vector::Normalise(Velocity);
-
-		Velocity *= Speed;
-
-		Orientation = Vector::GetOrientation(Orientation, Velocity);
-
-		WorkerSprite.setRotation(Orientation);
-
-		Position += Velocity;
-		WorkerSprite.setPosition(Position);
-}
-
-void Enemy::FindTarget(vector<Node*> Nodes)
-{
-	if (!TargetFound)
-	{
-		vector<Node*> PossibleTargets;
-
-		for (int i = 0; i < Nodes.size(); i++)
-		{
-			Vector2f Difference = Position - Nodes.at(i)->getPosition();
-			float Distance = Vector::Length(Difference);
-
-			if (!(Distance > 32 || Distance == 0))
-			{
-				if (!(Nodes.at(i)->Occupied()))
-				{
-					PossibleTargets.push_back(Nodes.at(i));
-				}
-			}
-		}
-
-		if (PossibleTargets.size() != NULL)
-		{
-			int RandomChoice = rand() % PossibleTargets.size();
-
-			Target = PossibleTargets.at(RandomChoice)->getPosition();
-
-			TargetFound = true;
-		}
-	}
+		
 }
