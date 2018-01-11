@@ -1,5 +1,3 @@
-
-*.db
 *.db
 AI_CA1/.vs/AI_CA1/v15/.suo
 *.tlog
@@ -11,9 +9,5 @@ AI_CA1/.vs/AI_CA1/v15/.suo
 *.vcxproj
 *.orig
 *.ipch
-*.tlog
 *.obj
-*.idb
 *.exe
-*.pdb
-*.ilk
