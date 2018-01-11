@@ -45,8 +45,9 @@ void TestScene::Initialise()
 	}
 
 	// Add in Worker
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	//Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	//Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Objects.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Objects.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 

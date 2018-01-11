@@ -12,6 +12,7 @@
 #include "Worker.h"
 #include "Collision.h"
 #include "AlienNest.h"
+#include "Enemy.h"
 
 class TestScene : public Scene, public EventListener
 {
