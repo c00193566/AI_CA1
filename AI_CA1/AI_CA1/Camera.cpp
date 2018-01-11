@@ -2,7 +2,8 @@
 
 Camera::Camera()
 {
-	CameraView = View(FloatRect(0, 0, 1280, 720));
+	//CameraView = View(FloatRect(0, 0, 1280, 720));
+	CameraView = View(FloatRect(0, 0, 2000, 1000));
 }
 
 Camera::~Camera()
