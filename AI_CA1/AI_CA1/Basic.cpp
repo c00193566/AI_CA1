@@ -13,7 +13,7 @@ Basic::Basic(string Tag, Texture & LoadedTexture, float x, float y)
 	Position = Vector2f(x, y);
 	BasicSprite.setPosition(Position);
 
-	Culled = false;
+	Culling = false;
 }
 
 Basic::~Basic()

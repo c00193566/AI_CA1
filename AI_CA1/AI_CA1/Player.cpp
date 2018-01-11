@@ -31,7 +31,7 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 
 	Friction = 0.8f;
 
-	Culled = false;
+	Culling = false;
 
 	return true;
 }
