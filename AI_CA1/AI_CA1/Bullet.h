@@ -13,6 +13,7 @@ private:
 	float TimeAlive;
 
 	bool Alive;
+	bool Culled;
 
 public:
 	Bullet();
@@ -27,5 +28,7 @@ public:
 	Sprite getSprite() { return BulletSprite; };
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
+	bool getCulled() { return Culled; }
+	bool setCulled(bool cul) { Culled = cul; }
 	bool getAlive() { return Alive; };
 };

@@ -14,6 +14,7 @@ class Worker : public GameObject
 	Vector2f Target;
 	bool TargetReached;
 	bool TargetFound;
+	bool Culled;
 
 public:
 	Worker();
@@ -26,4 +27,6 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return WorkerSprite; };
 	string getType() { return Type; };
+	bool getCulled() { return Culled; }
+	bool setCulled(bool cul) { Culled = cul; }
 };

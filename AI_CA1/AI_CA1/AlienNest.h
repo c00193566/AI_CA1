@@ -12,6 +12,7 @@ private:
 	bool PlayerFound;
 	bool MissileExists;
 	Vector2f MissileDirection;
+	bool Culled;
 
 public:
 	AlienNest();
@@ -22,6 +23,8 @@ public:
 	Sprite getSprite() { return AlienNestSprite; };
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
+	bool getCulled() { return Culled; }
+	bool setCulled(bool cul) { Culled = cul; }
 	void FindPlayer(Vector2f);
 	void FireMissile(Vector2f);
 };

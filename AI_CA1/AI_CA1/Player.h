@@ -15,6 +15,8 @@ private:
 	float MaxSpeed = 5.0f;
 	float MinSpeed = 0.0f;
 
+	bool Culled;
+
 public:
 	Player();
 	~Player();
@@ -29,6 +31,8 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return PlayerSprite; };
 	string getType() { return Type; };
+	bool getCulled() { return Culled; }
+	bool setCulled(bool cul) { Culled = cul; }
 	Vector2f getVelocity() { return Velocity; };
 	float getOrientation() { return Orientation; };
 };
