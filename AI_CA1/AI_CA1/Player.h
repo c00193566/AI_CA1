@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "TextureLoader.h"
 
 class Player : public GameObject
 {
@@ -14,11 +15,20 @@ private:
 
 	float MaxSpeed = 5.0f;
 	float MinSpeed = 0.0f;
+	int Lives = 3;
+	int WorkersCollected = 0;
+
+	TextureLoader * TextureHandler;
+
+	Texture HeartTexture;
+	vector<Sprite> Hearts;
+	vector<Vector2f> Differences;
+	Vector2f HeartPosition;
 
 public:
 	Player();
 	~Player();
-	bool Init(string Tag, Texture & LoadedTexture, Vector2f position);
+	bool Init(string Tag, Vector2f position);
 	bool Init(string Tag, Texture & LoadedTexture, float x, float y);
 	void Render(RenderSystem *);
 	void Update(unsigned int);

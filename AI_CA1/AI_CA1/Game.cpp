@@ -5,7 +5,7 @@ Game::Game() : LoadData("GeneralGameData.json")
 	TextureHandler = TextureLoader::Instance();
 
 	TextureHandler->addTexture("Player", "Assets/Player.png");
-	TextureHandler->addTexture("Walkway_01", "Assets/Walkway_01.png");
+	TextureHandler->addTexture("Walkway", "Assets/Walkway.png");
 	TextureHandler->addTexture("Wall_TopLeft", "Assets/Wall_TopLeft.png");
 	TextureHandler->addTexture("Wall_BottomRight", "Assets/Wall_BottomRight.png");
 	TextureHandler->addTexture("Wall_BottomLeft", "Assets/Wall_BottomLeft.png");
@@ -17,6 +17,7 @@ Game::Game() : LoadData("GeneralGameData.json")
 	TextureHandler->addTexture("Worker", "Assets/Worker.png");
 	TextureHandler->addTexture("AlienNest", "Assets/AlienNest.png");
 	TextureHandler->addTexture("Missile", "Assets/Missile.png");
+	TextureHandler->addTexture("Heart", "Assets/Heart.png");
 }
 
 Game::~Game()

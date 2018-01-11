@@ -10,11 +10,13 @@ Player::~Player()
 
 }
 
-bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
+bool Player::Init(string Tag, Vector2f position)
 {
 	Type = Tag;
 
-	PlayerTexture = LoadedTexture;
+	TextureHandler = TextureLoader::Instance();
+
+	PlayerTexture = TextureHandler->getTexture("Player");
 
 	PlayerSprite.setTexture(PlayerTexture);
 
@@ -22,6 +24,19 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 
 	Position = position;
 	PlayerSprite.setPosition(Position);
+
+	HeartTexture = TextureHandler->getTexture("Heart");
+	HeartPosition = Vector2f(280, 157);
+
+	for (int i = 0; i < 3; i++)
+	{
+		Differences.push_back(Vector2f(0, 0));
+		Hearts.push_back(Sprite());
+		Hearts.at(i).setTexture(HeartTexture);
+		Differences.at(i) = HeartPosition - Position;
+		HeartPosition.x += 70;
+		Hearts.at(i).setPosition(Position + Differences.at(i));
+	}
 
 	Velocity = Vector2f(0, 0);
 
@@ -47,6 +62,18 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 	Position = Vector2f(x, y);
 	PlayerSprite.setPosition(Position);
 
+	HeartTexture = TextureHandler->getTexture("Heart");
+	HeartPosition = Vector2f(0, 0);
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << HeartPosition.x << " , " << HeartPosition.y << endl;
+		Hearts.push_back(Sprite());
+		Hearts.at(i).setTexture(HeartTexture);
+		Hearts.at(i).setPosition(HeartPosition);
+		HeartPosition.x + 70;
+	}
+
 	Velocity = Vector2f(0, 0);
 
 	Orientation = 0.0f;
@@ -60,6 +87,11 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 
 void Player::Update(unsigned int DT)
 {
+	for (int i = 0; i < Lives; i++)
+	{
+		Hearts.at(i).setPosition(Position + Differences.at(i));
+	}
+
 	Movement();
 	SetVelocity();
 }
@@ -67,6 +99,12 @@ void Player::Update(unsigned int DT)
 void Player::Render(RenderSystem * Renderer)
 {
 	Renderer->RenderSprite(PlayerSprite);
+
+	for (int i = 0; i < Hearts.size(); i++)
+	{
+		Renderer->RenderSprite(Hearts.at(i));
+	}
+	
 }
 
 void Player::Movement()
@@ -135,6 +173,15 @@ void Player::Collision(string ObjType)
 	}
 	else if (ObjType == "Worker")
 	{
-		
+		WorkersCollected++;
+	}
+	else if (ObjType == "Missile")
+	{
+		if (Lives > 0)
+		{
+			Lives--;
+			Hearts.pop_back();
+		}
+		cout << Lives << endl;
 	}
 }

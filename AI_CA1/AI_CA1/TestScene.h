@@ -38,6 +38,8 @@ private:
 	// Private methods
 	void PlayerMovement();
 
+	int Level[17][33];
+
 public:
 	TestScene();
 	~TestScene() {};
