@@ -21,47 +21,33 @@ TestScene::TestScene()
 	PlayerObj = new Player;
 	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
 
-	// First Room
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 264));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 296));
-
-	// Walls
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopLeft"), 576, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 608, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 672, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopRight"), 704, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 608, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 640, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 672, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
-
-<<<<<<< HEAD
-=======
-	// Add in Worker
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-
->>>>>>> 000de01f3d0e94ebbbfdcf0430e6122cb01ffc67
 	UP = false;
 	DOWN = false;
 	RIGHT = false;
 	LEFT = false;
 
 	IsRunning = true;
+}
+
+void TestScene::Initialise()
+{
+	for (int i = 0; i < GameData::m_maxGameObjects; i++)
+	{
+		if (GameData::m_gameObjectVector.at(i).type == "Walkway" || GameData::m_gameObjectVector.at(i).type == "Wall")
+		{
+			Objects.push_back(new Basic(GameData::m_gameObjectVector.at(i).type, TextureHandler->getTexture(GameData::m_gameObjectVector.at(i).texture),
+				GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y));
+			if (GameData::m_gameObjectVector.at(i).type == "Walkway")
+			{
+				Nodes.push_back(new Node(Vector2f(GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y)));
+			}
+		}
+	}
+
+	// Add in Worker
+	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Objects.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -73,19 +59,68 @@ void TestScene::Update(unsigned int DT)
 	PlayerObj->Update(DT);
 	PlayerMovement();
 
+	//Update Nodes
+	for (int i = 0; i < Nodes.size(); i++)
+	{
+		for (int j = 0; j < Objects.size(); j++)
+		{
+			if (!(Objects.at(j)->getType() == "Walkway" || Objects.at(j)->getType() == "Wall"))
+			{
+				Nodes.at(i)->Update(Objects.at(j)->getPosition());
+			}
+		}
+	}
+
 	// Update GameObjects
 	for (int i = 0; i < Objects.size(); i++)
 	{
+<<<<<<< HEAD
+		if (!Objects.at(i)->getCulled())
+		{
+			Objects.at(i)->Update(DT);
+
+			if (Objects.at(i)->getType() == "Wall")
+=======
 		Objects.at(i)->Update(DT);
+
+		Collision::PlayerCollision(Objects.at(i), PlayerObj);
 
 		if (Objects.at(i)->getType() == "Wall")
 		{
-			Collision::WallCollision(Objects.at(i), PlayerObj);
-
 			for (int j = 0; j < Bullets.size(); j++)
+>>>>>>> ed9d44e62a9afe8924879a548cd8c05772004308
 			{
-				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
+				Collision::WallCollision(Objects.at(i), PlayerObj);
+
+				for (int j = 0; j < Bullets.size(); j++)
+				{
+					Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
+				}
 			}
+			else if (Objects.at(i)->getType() == "Worker")
+			{
+				Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
+				WorkerObj->FindTarget(Nodes);
+			}
+			else if (Objects.at(i)->getType() == "AlienNest")
+			{
+				AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+				AlienObj->FindPlayer(PlayerObj->getPosition());
+			}
+<<<<<<< HEAD
+=======
+		}
+		else if (Objects.at(i)->getType() == "Worker")
+		{
+			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
+			WorkerObj->FindTarget(Nodes);
+		}
+		else if (Objects.at(i)->getType() == "AlienNest")
+		{
+			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+			AlienObj->FindPlayer(PlayerObj->getPosition());
+			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
+>>>>>>> ed9d44e62a9afe8924879a548cd8c05772004308
 		}
 	}
 
@@ -98,11 +133,6 @@ void TestScene::Update(unsigned int DT)
 		{
 			Bullets.erase(Bullets.begin() + i);
 			CurrentBullets--;
-		}
-		else if (Objects.at(i)->getType() == "Worker")
-		{
-			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-			WorkerObj->FindTarget(Objects);
 		}
 	}
 }
@@ -133,7 +163,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	// Renderer GameObjects
 	for (int i = 0; i < Objects.size(); i++)
 	{
-		Objects.at(i)->Render(Renderer);
+		Objects.at(i)->setCulled(SceneCamera.Visible(Objects.at(i)->getPosition()));
+		if (!Objects.at(i)->getCulled())
+		{
+			Objects.at(i)->Render(Renderer);
+		}
 	}
 
 	for (int i = 0; i < Bullets.size(); i++)
