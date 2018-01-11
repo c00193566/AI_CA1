@@ -129,4 +129,14 @@ void Player::Collision(string ObjType)
 		PlayerSprite.setPosition(Position);
 		Speed = 0;
 	}
+	else if (ObjType == "AlienNest")
+	{
+		Position -= Velocity * MaxSpeed;
+		PlayerSprite.setPosition(Position);
+		Speed = 0;
+	}
+	else if (ObjType == "Worker")
+	{
+		
+	}
 }

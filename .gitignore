@@ -1,10 +1,19 @@
 
 *.db
-*.ipch
+*.db
+AI_CA1/.vs/AI_CA1/v15/.suo
+*.tlog
 *.log
 *.lastbuildstate
+*.pdb
+*.idb
+*.ilk
+*.vcxproj
+*.orig
+*.ipch
 *.tlog
 *.obj
 *.idb
 *.exe
+*.pdb
 *.ilk
