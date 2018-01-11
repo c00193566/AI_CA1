@@ -74,26 +74,29 @@ void TestScene::Update(unsigned int DT)
 	// Update GameObjects
 	for (int i = 0; i < Objects.size(); i++)
 	{
-		Objects.at(i)->Update(DT);
-
-		if (Objects.at(i)->getType() == "Wall")
+		if (!Objects.at(i)->getCulled())
 		{
-			Collision::WallCollision(Objects.at(i), PlayerObj);
+			Objects.at(i)->Update(DT);
 
-			for (int j = 0; j < Bullets.size(); j++)
+			if (Objects.at(i)->getType() == "Wall")
 			{
-				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
+				Collision::WallCollision(Objects.at(i), PlayerObj);
+
+				for (int j = 0; j < Bullets.size(); j++)
+				{
+					Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
+				}
 			}
-		}
-		else if (Objects.at(i)->getType() == "Worker")
-		{
-			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-			WorkerObj->FindTarget(Nodes);
-		}
-		else if (Objects.at(i)->getType() == "AlienNest")
-		{
-			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
-			AlienObj->FindPlayer(PlayerObj->getPosition());
+			else if (Objects.at(i)->getType() == "Worker")
+			{
+				Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
+				WorkerObj->FindTarget(Nodes);
+			}
+			else if (Objects.at(i)->getType() == "AlienNest")
+			{
+				AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+				AlienObj->FindPlayer(PlayerObj->getPosition());
+			}
 		}
 	}
 
@@ -136,7 +139,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	// Renderer GameObjects
 	for (int i = 0; i < Objects.size(); i++)
 	{
-		Objects.at(i)->Render(Renderer);
+		Objects.at(i)->setCulled(SceneCamera.Visible(Objects.at(i)->getPosition()));
+		if (!Objects.at(i)->getCulled())
+		{
+			Objects.at(i)->Render(Renderer);
+		}
 	}
 
 	for (int i = 0; i < Bullets.size(); i++)
