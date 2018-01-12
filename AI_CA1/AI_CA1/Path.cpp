@@ -56,7 +56,7 @@ Vector2f Path::UniformCostSearch(Graph<pair<string, int>, int> * GraphData, vect
 
 	GraphData->ucs(GraphData->nodeIndex(Start), GraphData->nodeIndex(Dest), Path);
 
-	string PointName = Path.at(Path.size() - 1)->data().first;
+	string PointName = Path.at(0)->data().first;
 	int PointIndex = stoi(PointName);
 
 	return Points->at(PointIndex);

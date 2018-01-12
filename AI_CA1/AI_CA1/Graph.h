@@ -51,7 +51,6 @@ public:
     void depthFirst( Node* pNode, void (*pProcess)(Node*) );
     void breadthFirst( Node* pNode, void (*pProcess)(Node*) );
 	void ucs(Node* pStart, Node* pDest, vector<Node *> &path);
-	void aStar(Node * pStart, Node * pDest, void(*pProcess)(Node*), vector<Node *> &path);
 };
 
 // ----------------------------------------------------------------
@@ -394,28 +393,6 @@ void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, vector<Node*>&path
 	}
 
 	Node * current = pDest;
-
-	cout << endl;
-
-}
-
-template<class NodeType, class ArcType>
-void Graph<NodeType, ArcType>::aStar(Node * pStart, Node * pDest, void(*pProcess)(Node*), vector<Node *> &path)
-{
-	Node * current = pDest;
-
-	cout << "Astar Method" << endl;
-
-	while (current != nullptr)
-	{
-		current->data().second = current->data().second * 0.9;
-		cout << "Point : " << current->data().first;
-		cout << " |Distance : " << current->data().second << endl;
-		current = current->previous();
-	}
-
-	cout << endl;
-
 }
 
 

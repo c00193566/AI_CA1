@@ -24,10 +24,7 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Speed = 1.0f;
 
-	Range = 255;
-
-	TargetReached = true;
-	Wander = true;
+	Range = 0;
 
 	CurrentState = States::Search;
 
@@ -49,6 +46,7 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 {
 	if (CurrentState == States::Search)
 	{
+		cout << "Searching..." << endl;
 		// Is Player in range?
 		Vector2f Dir = PlayerPos - Position;
 		float Dis = Vector::Length(Dir);
@@ -78,14 +76,13 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		// Check if reached endpoint
 		if (Start == End)
 		{
+			cout << "Location : " << Position.x << " , " << Position.y << endl;
 			CurrentState = States::Search;
 		}
 
 		else
 		{
 			Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
-
-			cout << boolalpha << CheckBounds() << endl;
 
 			if (CheckBounds())
 			{
@@ -108,12 +105,9 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		{
 			Target = PlayerPos;
 		}
-
 		else
 		{
 			Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
-
-			cout << boolalpha << CheckBounds() << endl;
 
 			if (CheckBounds())
 			{
@@ -136,12 +130,6 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 
 void Enemy::Movement()
 {
-	if (Position == Target)
-	{
-		TargetReached = true;
-		cout << boolalpha << TargetReached << endl;
-	}
-	
 	Position += Velocity;
 	EnemySprite.setPosition(Position);
 }
@@ -164,7 +152,7 @@ bool Enemy::CheckBounds()
 	Vector2f Min = Vector2f(Target.x - 2, Target.y - 2);
 	Vector2f Max = Vector2f(Target.x + 2, Target.y + 2);
 	if ((Position.x >= Min.x && Position.x <= Max.x) &&
-		(Position.y >= Min.y && Position.y >- Max.y))
+		(Position.y >= Min.y && Position.y <= Max.y))
 	{
 		return true;
 	}

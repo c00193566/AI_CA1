@@ -3,7 +3,6 @@
 TestScene::TestScene()
 {
 	// Load in Waypoints
-	GraphData = new Graph<pair<string, int>, int>(3);
 	LoadGraph();
 
 	// Set up listeners for input handler
@@ -53,6 +52,8 @@ void TestScene::Initialise()
 
 void TestScene::LoadGraph()
 {
+	GraphData = new Graph<pair<string, int>, int>(3);
+
 	ifstream myfile;
 	
 	int Max = numeric_limits<int>::max() - 10000;

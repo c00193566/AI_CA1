@@ -22,8 +22,6 @@ class Enemy : public GameObject
 	float Orientation;
 	Vector2f Target;
 	float Range;
-	bool TargetReached;
-	bool Wander;
 	int Start;
 	int End;
 
