@@ -35,19 +35,15 @@ void TestScene::Initialise()
 	{
 		if (GameData::m_gameObjectVector.at(i).type == "Walkway" || GameData::m_gameObjectVector.at(i).type == "Wall")
 		{
-			Objects.push_back(new Basic(GameData::m_gameObjectVector.at(i).type, TextureHandler->getTexture(GameData::m_gameObjectVector.at(i).texture),
+			Map.push_back(new Basic(GameData::m_gameObjectVector.at(i).type, TextureHandler->getTexture(GameData::m_gameObjectVector.at(i).texture),
 				GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y));
-			if (GameData::m_gameObjectVector.at(i).type == "Walkway")
-			{
-				Nodes.push_back(new Node(Vector2f(GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y)));
-			}
 		}
 	}
 
 	// Add in Worker
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
-	Objects.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -59,46 +55,25 @@ void TestScene::Update(unsigned int DT)
 	PlayerObj->Update(DT);
 	PlayerMovement();
 
-	//Update Nodes
-	for (int i = 0; i < Nodes.size(); i++)
+	// Update GameObjects
+	for (int i = 0; i < Workers.size(); i++)
 	{
-		for (int j = 0; j < Objects.size(); j++)
+		Workers.at(i)->Update(DT);
+		Collision::PlayerCollision(Workers.at(i), PlayerObj);
+
+		if (!Workers.at(i)->getAlive())
 		{
-			if (!(Objects.at(j)->getType() == "Walkway" || Objects.at(j)->getType() == "Wall"))
-			{
-				Nodes.at(i)->Update(Objects.at(j)->getPosition());
-			}
+			Workers.erase(Workers.begin() + i);
+			break;
 		}
 	}
 
-	// Update GameObjects
-	for (int i = 0; i < Objects.size(); i++)
+	for (int i = 0; i < Nests.size(); i++)
 	{
-		if (!Objects.at(i)->getCulled())
-		{
-			Objects.at(i)->Update(DT);
-
-		Collision::PlayerCollision(Objects.at(i), PlayerObj);
-
-			if (Objects.at(i)->getType() == "Wall")
-			{
-				for (int j = 0; j < Bullets.size(); j++)
-				{
-					Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
-				}
-			}
-			else if (Objects.at(i)->getType() == "Worker")
-			{
-				Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-				WorkerObj->FindTarget(Nodes);
-			}
-			else if (Objects.at(i)->getType() == "AlienNest")
-			{
-				AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
-				AlienObj->FindPlayer(PlayerObj->getPosition());
-			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
-			}
-		}
+		Nests.at(i)->Update(DT);
+		Nests.at(i)->FindPlayer(PlayerObj->getPosition());
+		Nests.at(i)->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
+		Collision::PlayerCollision(Nests.at(i), PlayerObj);
 	}
 
 	// Update bullets
@@ -138,13 +113,20 @@ void TestScene::PlayerMovement()
 void TestScene::Render(RenderSystem *Renderer)
 {
 	// Renderer GameObjects
-	for (int i = 0; i < Objects.size(); i++)
+	for (int i = 0; i < Map.size(); i++)
 	{
-		Objects.at(i)->setCulled(SceneCamera.Visible(Objects.at(i)->getPosition()));
-		if (!Objects.at(i)->getCulled())
-		{
-			Objects.at(i)->Render(Renderer);
-		}
+		Map.at(i)->Render(Renderer);
+		Collision::PlayerCollision(Map.at(i), PlayerObj);
+	}
+
+	for (int i = 0; i < Workers.size(); i++)
+	{
+		Workers.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Nests.size(); i++)
+	{
+		Nests.at(i)->Render(Renderer);
 	}
 
 	for (int i = 0; i < Bullets.size(); i++)
