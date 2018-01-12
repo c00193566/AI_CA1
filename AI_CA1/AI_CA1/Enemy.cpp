@@ -24,9 +24,10 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Speed = 1.0f;
 
-	Range = 0;
+	MaxRange = 128;
+	MinRange = 32;
 
-	CurrentState = States::Search;
+	CurrentState = States::Setup;
 
 	Start = -1000;
 	End = -1000;
@@ -46,13 +47,22 @@ void Enemy::Render(RenderSystem * Renderer)
 
 void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * WayPoints, Vector2f PlayerPos)
 {
-	if (CurrentState == States::Search)
+	if (CurrentState == States::Setup)
+	{
+		Target = Path::NearestPointPosition(WayPoints, Position);
+
+		if (CheckBounds())
+		{
+			CurrentState = States::Search;
+		}
+	}
+	else if (CurrentState == States::Search)
 	{
 		cout << "Searching..." << endl;
 		// Is Player in range?
 		Vector2f Dir = PlayerPos - Position;
 		float Dis = Vector::Length(Dir);
-		if (Dis < Range)
+		if (Dis < MaxRange)
 		{
 			Start = Path::NearestPointIndex(WayPoints, Position);
 			End = Path::NearestPointIndex(WayPoints, PlayerPos);
@@ -62,6 +72,7 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		{
 			// Not in Range, generate random index
 			int Point = rand() % WayPoints->size();
+			End = Path::NearestPointIndex(WayPoints, Position);
 
 			// Don't want to go to last point
 			if (Point != End)
@@ -82,9 +93,52 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		{
 			cout << "Location : " << Position.x << " , " << Position.y << endl;
 			CurrentState = States::Search;
+			return;
 		}
 
-		else
+		if (Path.size() > 0)
+		{
+			string PointName = Path.at(Path.size() - 1)->data().first;
+			int PointIndex = stoi(PointName);
+			Target = WayPoints->at(PointIndex);
+
+			if (CheckBounds())
+			{
+				Start = Path::NearestPointIndex(WayPoints, Position);
+				Path.pop_back();
+			}
+		}
+
+		// Check if comes into range
+		Vector2f Dir = PlayerPos - Position;
+		float Dis = Vector::Length(Dir);		
+
+		if (Dis < MaxRange)
+		{
+			CurrentState = States::Search;
+		}
+	}
+	else if (CurrentState == States::FollowPlayer)
+	{
+		// Check if comes into range
+		Vector2f Dir = PlayerPos - Position;
+		float Dis = Vector::Length(Dir);
+
+		cout << Dis << endl;
+
+		if (Dis > MaxRange)
+		{
+			CurrentState = States::Search;
+			return;
+		}
+
+		// Check if reached endpoint
+		if (Start == End || Dis < MinRange)
+		{
+			Target = PlayerPos;
+		}
+
+		if (Dis > MinRange)
 		{
 			if (Path.size() > 0)
 			{
@@ -98,39 +152,6 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 					Path.pop_back();
 				}
 			}
-		}
-
-		// Check if comes into range
-		Vector2f Dir = PlayerPos - Position;
-		float Dis = Vector::Length(Dir);		
-		if (Dis < Range)
-		{
-			CurrentState = States::Search;
-		}
-	}
-	else if (CurrentState == States::FollowPlayer)
-	{
-		// Check if reached endpoint
-		if (Start == End)
-		{
-			Target = PlayerPos;
-		}
-		else
-		{
-			//Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
-
-			if (CheckBounds())
-			{
-				Start = Path::NearestPointIndex(WayPoints, Position);
-			}
-		}
-
-		// Check if comes into range
-		Vector2f Dir = PlayerPos - Position;
-		float Dis = Vector::Length(Dir);
-		if (Dis > Range)
-		{
-			CurrentState = States::Search;
 		}
 	}
 

@@ -8,6 +8,7 @@ class Enemy : public GameObject
 {
 	enum class States
 	{
+		Setup,
 		Search,
 		FollowPath,
 		FollowPlayer
@@ -21,7 +22,8 @@ class Enemy : public GameObject
 	float Speed;
 	float Orientation;
 	Vector2f Target;
-	float Range;
+	float MaxRange;
+	float MinRange;
 	int Start;
 	int End;
 

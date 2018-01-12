@@ -24,8 +24,12 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Speed = 1.0f;
 
-	TargetFound = false;
-	TargetReached = false;
+	CurrentState = States::Setup;
+
+	Start = -1000;
+	End = -1000;
+
+	Path = vector<Node*>();
 }
 
 Worker::~Worker()
@@ -38,17 +42,61 @@ void Worker::Render(RenderSystem * Renderer)
 	Renderer->RenderSprite(WorkerSprite);
 }
 
-void Worker::Update(unsigned int DT)
+void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * Waypoints)
 {
-	if (TargetFound)
+	if (CurrentState == States::Setup)
 	{
-		Movement();
+		Target = Path::NearestPointPosition(Waypoints, Position);
+
+		if (CheckBounds())
+		{
+			CurrentState = States::Search;
+		}
+	}
+	else if (CurrentState == States::Search)
+	{
+		cout << "Searching..." << endl;
+
+		// Not in Range, generate random index
+		int Point = rand() % Waypoints->size();
+		End = Path::NearestPointIndex(Waypoints, Position);
+
+		// Don't want to go to last point
+		if (Point != End)
+		{
+			Start = Path::NearestPointIndex(Waypoints, Position);
+			End = Point;
+			Path = Path::UniformCostSearch(GraphData, Waypoints, Start, End);
+			cout << Start << " , " << End << endl;
+			CurrentState = States::FollowPath;
+		}
+	}
+	else if (CurrentState == States::FollowPath)
+	{
+
+		// Check if reached endpoint
+		if (Start == End)
+		{
+			cout << "Location : " << Position.x << " , " << Position.y << endl;
+			CurrentState = States::Search;
+			return;
+		}
+
+		if (Path.size() > 0)
+		{
+			string PointName = Path.at(Path.size() - 1)->data().first;
+			int PointIndex = stoi(PointName);
+			Target = Waypoints->at(PointIndex);
+
+			if (CheckBounds())
+			{
+				Start = Path::NearestPointIndex(Waypoints, Position);
+				Path.pop_back();
+			}
+		}
 	}
 
-	if (Position == Target)
-	{
-		TargetFound = false;
-	}
+	Movement();
 }
 
 void Worker::Movement()
@@ -65,4 +113,19 @@ void Worker::Movement()
 
 		Position += Velocity;
 		WorkerSprite.setPosition(Position);
+}
+
+bool Worker::CheckBounds()
+{
+	Vector2f Min = Vector2f(Target.x - 2, Target.y - 2);
+	Vector2f Max = Vector2f(Target.x + 2, Target.y + 2);
+	if ((Position.x >= Min.x && Position.x <= Max.x) &&
+		(Position.y >= Min.y && Position.y <= Max.y))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

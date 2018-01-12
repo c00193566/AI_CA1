@@ -56,8 +56,14 @@ vector<Node*> Path::UniformCostSearch(Graph<pair<string, int>, int> * GraphData,
 
 	GraphData->ucs(GraphData->nodeIndex(Start), GraphData->nodeIndex(Dest), Path);
 
-	string PointName = Path.at(Path.size() - 1)->data().first;
-	int PointIndex = stoi(PointName);
-
-	return Path;
+	if (Path.size() > 0)
+	{
+		string PointName = Path.at(Path.size() - 1)->data().first;
+		int PointIndex = stoi(PointName);
+		return Path;
+	}
+	else
+	{
+		return vector<Node*>();
+	}
 }

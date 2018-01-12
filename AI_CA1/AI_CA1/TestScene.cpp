@@ -44,15 +44,15 @@ void TestScene::Initialise()
 	}
 
 	// Add in Worker
-	//Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-	//Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
 	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::LoadGraph()
 {
-	GraphData = new Graph<pair<string, int>, int>(3);
+	GraphData = new Graph<pair<string, int>, int>(4);
 
 	ifstream myfile;
 	
@@ -100,7 +100,7 @@ void TestScene::Update(unsigned int DT)
 	// Update GameObjects
 	for (int i = 0; i < Workers.size(); i++)
 	{
-		Workers.at(i)->Update(DT);
+		Workers.at(i)->Update(DT, GraphData, &Waypoints);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
 	}
 
@@ -114,7 +114,7 @@ void TestScene::Update(unsigned int DT)
 
 	for (int i = 0; i < Enemies.size(); i++)
 	{
-		Enemies.at(i)->Update(DT,GraphData, &Waypoints, PlayerObj->getPosition());
+		Enemies.at(i)->Update(DT, GraphData, &Waypoints, PlayerObj->getPosition());
 		Collision::PlayerCollision(Enemies.at(i), PlayerObj);
 	}
 
