@@ -50,14 +50,14 @@ int Path::NearestPointIndex(vector<Vector2f>* Points, Vector2f Position)
 	return Index;
 }
 
-Vector2f Path::UniformCostSearch(Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * Points,int Start, int Dest)
+vector<Node*> Path::UniformCostSearch(Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * Points,int Start, int Dest)
 {
 	vector<Node *> Path;
 
 	GraphData->ucs(GraphData->nodeIndex(Start), GraphData->nodeIndex(Dest), Path);
 
-	string PointName = Path.at(0)->data().first;
+	string PointName = Path.at(Path.size() - 1)->data().first;
 	int PointIndex = stoi(PointName);
 
-	return Points->at(PointIndex);
+	return Path;
 }

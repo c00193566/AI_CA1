@@ -11,3 +11,13 @@ AI_CA1/.vs/AI_CA1/v15/.suo
 *.ipch
 *.obj
 *.exe
+*.db
+*.ipch
+*.log
+*.enc
+*.obj
+*.pdb
+*.idb
+*.exe
+*.ilk
+*.pdb

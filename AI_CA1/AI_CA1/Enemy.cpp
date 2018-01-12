@@ -30,6 +30,8 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Start = -1000;
 	End = -1000;
+
+	Path = vector<Node*>();
 }
 
 Enemy::~Enemy()
@@ -66,6 +68,8 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 			{
 				Start = Path::NearestPointIndex(WayPoints, Position);
 				End = Point;
+				Path = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
+				cout << Start << " , " << End << endl;
 				CurrentState = States::FollowPath;
 			}
 		}
@@ -82,11 +86,17 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 
 		else
 		{
-			Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
-
-			if (CheckBounds())
+			if (Path.size() > 0)
 			{
-				Start = Path::NearestPointIndex(WayPoints, Position);
+				string PointName = Path.at(Path.size() - 1)->data().first;
+				int PointIndex = stoi(PointName);
+				Target = WayPoints->at(PointIndex);
+
+				if (CheckBounds())
+				{
+					Start = Path::NearestPointIndex(WayPoints, Position);
+					Path.pop_back();
+				}
 			}
 		}
 
@@ -107,7 +117,7 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		}
 		else
 		{
-			Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
+			//Target = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
 
 			if (CheckBounds())
 			{

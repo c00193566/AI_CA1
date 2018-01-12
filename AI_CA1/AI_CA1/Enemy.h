@@ -25,6 +25,8 @@ class Enemy : public GameObject
 	int Start;
 	int End;
 
+	vector<Node*> Path;
+
 public:
 	Enemy();
 	Enemy(string Tag, Texture & LoadedTexture, float x, float y);

@@ -379,7 +379,7 @@ void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, vector<Node*>&path
 						path.push_back(Temp);
 
 						// Loop through Queue until Nodes have been added to path
-						while (Temp != pDest)
+						while (Temp != pStart)
 						{
 							Temp = Temp->previous();
 							path.push_back(Temp);

@@ -18,6 +18,6 @@ public:
 	~Path();
 	static Vector2f NearestPointPosition(vector<Vector2f> *, Vector2f);
 	static int NearestPointIndex(vector<Vector2f> *, Vector2f);
-	static Vector2f UniformCostSearch(Graph<pair<string, int>, int> *, vector<Vector2f> *, int, int);
+	static vector<Node*> UniformCostSearch(Graph<pair<string, int>, int> *, vector<Vector2f> *, int, int);
 
 };
