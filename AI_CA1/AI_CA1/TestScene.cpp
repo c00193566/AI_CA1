@@ -100,6 +100,8 @@ void TestScene::Update(unsigned int DT)
 	// Update GameObjects
 	for (int i = 0; i < Workers.size(); i++)
 	{
+		Workers.at(i)->Repulsion(Workers);
+		Workers.at(i)->Repulsion(Enemies);
 		Workers.at(i)->Update(DT, GraphData, &Waypoints);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
 	}

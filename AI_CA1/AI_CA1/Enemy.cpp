@@ -124,8 +124,6 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 		Vector2f Dir = PlayerPos - Position;
 		float Dis = Vector::Length(Dir);
 
-		cout << Dis << endl;
-
 		if (Dis > MaxRange)
 		{
 			CurrentState = States::Search;

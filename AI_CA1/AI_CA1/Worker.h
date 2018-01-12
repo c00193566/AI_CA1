@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Graph.h"
 #include "GameObject.h"
+#include "Enemy.h"
 #include "Path.h"
 
 class Worker : public GameObject
@@ -20,6 +21,7 @@ class Worker : public GameObject
 	Vector2f Velocity;
 	float Speed;
 	float Orientation;
+	float Rotation;
 	Vector2f Target;
 	int Start;
 	int End;
@@ -31,10 +33,14 @@ public:
 	Worker(string Tag, Texture & LoadedTexture, float x, float y);
 	~Worker();
 	void Render(RenderSystem *);
-	void Update(unsigned int, Graph<pair<string, int>, int>*, vector<Vector2f> *);
+	void Update(unsigned int, Graph<pair<string, int>, int>*, vector<Vector2f>*);
 	void Movement();
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return WorkerSprite; };
 	string getType() { return Type; };
 	bool CheckBounds();
+	void Seek();
+	void OrientationToVelocity();
+	void Repulsion(vector<Worker*>);
+	void Repulsion(vector<Enemy*>);
 };

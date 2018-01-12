@@ -29,6 +29,8 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 	Start = -1000;
 	End = -1000;
 
+	Rotation = 0;
+
 	Path = vector<Node*>();
 }
 
@@ -55,8 +57,6 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 	}
 	else if (CurrentState == States::Search)
 	{
-		cout << "Searching..." << endl;
-
 		// Not in Range, generate random index
 		int Point = rand() % Waypoints->size();
 		End = Path::NearestPointIndex(Waypoints, Position);
@@ -67,7 +67,6 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 			Start = Path::NearestPointIndex(Waypoints, Position);
 			End = Point;
 			Path = Path::UniformCostSearch(GraphData, Waypoints, Start, End);
-			cout << Start << " , " << End << endl;
 			CurrentState = States::FollowPath;
 		}
 	}
@@ -77,7 +76,6 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 		// Check if reached endpoint
 		if (Start == End)
 		{
-			cout << "Location : " << Position.x << " , " << Position.y << endl;
 			CurrentState = States::Search;
 			return;
 		}
@@ -96,23 +94,16 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 		}
 	}
 
+	Seek();
+	OrientationToVelocity();
 	Movement();
 }
 
 void Worker::Movement()
 {
-		Velocity = Target - Position;
-
-		Velocity = Vector::Normalise(Velocity);
-
-		Velocity *= Speed;
-
-		Orientation = Vector::GetOrientation(Orientation, Velocity);
-
-		WorkerSprite.setRotation(Orientation);
-
-		Position += Velocity;
-		WorkerSprite.setPosition(Position);
+	Velocity *= Speed;
+	Position += Velocity;
+	WorkerSprite.setPosition(Position);
 }
 
 bool Worker::CheckBounds()
@@ -127,5 +118,75 @@ bool Worker::CheckBounds()
 	else
 	{
 		return false;
+	}
+}
+
+void Worker::Seek()
+{
+	Velocity = Target - Position;
+
+	Velocity = Vector::Normalise(Velocity);
+
+	Orientation = Vector::GetOrientation(Orientation, Velocity);
+
+	WorkerSprite.setRotation(Orientation);
+}
+
+void Worker::OrientationToVelocity()
+{
+	Orientation += Rotation;
+	Velocity = Vector2f(sin((Orientation / 180 * 3.14f)), -cos((Orientation / 180 * 3.14f)));
+	Velocity = Vector::Normalise(Velocity);
+}
+
+void Worker::Repulsion(vector<Worker*> Objs)
+{
+	bool InRange = false;
+
+	for (int i = 0; i < Objs.size(); i++)
+	{
+		Vector2f Dir = Position - Objs.at(i)->getPosition();
+		float Distance = Vector::Length(Dir);
+
+		if (Distance <= 64 && Distance > 0)
+		{
+			InRange = true;
+			break;
+		}
+	}
+
+	if (InRange)
+	{
+		Rotation = 22.5f;
+	}
+	else
+	{
+		Rotation = 0;
+	}
+}
+
+void Worker::Repulsion(vector<Enemy*> Objs)
+{
+	bool InRange = false;
+
+	for (int i = 0; i < Objs.size(); i++)
+	{
+		Vector2f Dir = Position - Objs.at(i)->getPosition();
+		float Distance = Vector::Length(Dir);
+
+		if (Distance <= 64 && Distance > 0)
+		{
+			InRange = true;
+			break;
+		}
+	}
+
+	if (InRange)
+	{
+		Rotation = 22.5f;
+	}
+	else if (!InRange && Rotation == 0)
+	{
+		Rotation = 0;
 	}
 }
