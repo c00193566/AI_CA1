@@ -33,6 +33,23 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 
 	Culling = false;
 
+	WorkersCollected = 0;
+	MaxWorkers = 3;
+
+	if (!Font.loadFromFile("Assets/OpenSans.ttf"))
+	{
+		cout << "Font not loaded" << endl;
+	}
+
+	TextPosition = Vector2f(500, 170);
+	TextDifference = TextPosition - Position;
+
+	WorkerText.setFont(Font);
+	WorkerText.setPosition(Position + TextDifference);
+	WorkerText.setFillColor(Color::White);
+	WorkerText.setCharacterSize(24);
+	WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
+
 	return true;
 }
 
@@ -62,6 +79,8 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 
 void Player::Update(unsigned int DT)
 {
+	WorkerText.setPosition(Position + TextDifference);
+
 	Movement();
 	SetVelocity();
 }
@@ -69,6 +88,7 @@ void Player::Update(unsigned int DT)
 void Player::Render(RenderSystem * Renderer)
 {
 	Renderer->RenderSprite(PlayerSprite);
+	Renderer->RenderText(WorkerText);
 }
 
 void Player::Movement()
