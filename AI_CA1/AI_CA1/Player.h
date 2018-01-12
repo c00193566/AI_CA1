@@ -15,6 +15,16 @@ private:
 	float MaxSpeed = 5.0f;
 	float MinSpeed = 0.0f;
 
+	int WorkersCollected;
+	int MaxWorkers;
+
+	//Font and Text
+	Font Font;
+	Text WorkerText;
+
+	Vector2f TextPosition;
+	Vector2f TextDifference;
+
 public:
 	Player();
 	~Player();

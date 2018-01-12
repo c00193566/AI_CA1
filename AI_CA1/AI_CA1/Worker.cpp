@@ -28,6 +28,8 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 	TargetReached = false;
 
 	Culling = false;
+
+	Alive = true;
 }
 
 Worker::~Worker()
