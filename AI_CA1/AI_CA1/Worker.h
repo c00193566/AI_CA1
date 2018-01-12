@@ -23,6 +23,4 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return WorkerSprite; };
 	string getType() { return Type; };
-	bool getCulled() { return Culling; }
-	void setCulled(bool set) { Culling = set; }
 };

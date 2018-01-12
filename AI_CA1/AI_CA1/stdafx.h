@@ -14,5 +14,8 @@
 	#include <cmath>
 	#include <fstream>
 	#include <utility>
+	#include <time.h>
+	#include <random>
+	#include <iterator>
 	using namespace std;
 #endif

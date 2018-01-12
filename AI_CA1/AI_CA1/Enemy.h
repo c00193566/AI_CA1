@@ -1,31 +1,42 @@
 #pragma once
 #include "stdafx.h"
 #include "GameObject.h"
-#include <queue>
+#include "Path.h"
+
 
 class Enemy : public GameObject
 {
-	Texture WorkerTexture;
-	Sprite WorkerSprite;
+	enum class States
+	{
+		Search,
+		FollowPath,
+		FollowPlayer
+	};
+
+	States CurrentState;
+	Texture EnemyTexture;
+	Sprite EnemySprite;
 	Vector2f Position;
 	Vector2f Velocity;
 	float Speed;
 	float Orientation;
 	Vector2f Target;
-	bool Wander;
 	float Range;
-	vector<Vector2f> path;
+	bool TargetReached;
+	bool Wander;
+	int Start;
+	int End;
 
 public:
 	Enemy();
 	Enemy(string Tag, Texture & LoadedTexture, float x, float y);
 	~Enemy();
 	void Render(RenderSystem *);
-	void Update(unsigned int);
+	void Update(unsigned int,Graph<pair<string, int>, int>*, vector<Vector2f> *, Vector2f );
 	void Movement();
+	void Seek();
 	Vector2f getPosition() { return Position; };
-	Sprite getSprite() { return WorkerSprite; };
+	Sprite getSprite() { return EnemySprite; };
 	string getType() { return Type; };
-	bool getCulled() { return Culling; };
-	void setCulled(bool set) { Culling = set; };
+	bool CheckBounds();
 };

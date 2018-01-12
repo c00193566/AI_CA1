@@ -12,7 +12,7 @@ private:
 	float Orientation;
 	float Friction;
 
-	float MaxSpeed = 5.0f;
+	float MaxSpeed = 2.5f;
 	float MinSpeed = 0.0f;
 
 public:
@@ -29,8 +29,6 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return PlayerSprite; };
 	string getType() { return Type; };
-	bool getCulled() { return Culling; }
-	void setCulled(bool set) { Culling = set; }
 	Vector2f getVelocity() { return Velocity; };
 	float getOrientation() { return Orientation; };
 };

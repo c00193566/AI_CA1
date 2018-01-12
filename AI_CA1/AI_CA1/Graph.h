@@ -50,7 +50,7 @@ public:
     void clearMarks();
     void depthFirst( Node* pNode, void (*pProcess)(Node*) );
     void breadthFirst( Node* pNode, void (*pProcess)(Node*) );
-	void ucs(Node* pStart, Node* pDest, void(*pProcess)(Node*), vector<Node *> &path);
+	void ucs(Node* pStart, Node* pDest, vector<Node *> &path);
 	void aStar(Node * pStart, Node * pDest, void(*pProcess)(Node*), vector<Node *> &path);
 };
 
@@ -298,62 +298,102 @@ void Graph<NodeType, ArcType>::breadthFirst( Node* node, void (*process)(Node*) 
 }
 
 template<class NodeType, class ArcType>
-void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, void(*pProcess)(Node*), vector<Node*>&path)
+void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, vector<Node*>&path)
 {
 	int infinity = numeric_limits<int>::max() - 10000; // -10000 reduce chance of overflow
-	priority_queue<Node*, vector<Node*>, SearchCostComparer> pq;
 
 	for (int i = 0; i < m_maxNodes; i++)
 	{
+		m_nodes.at(i)->setMarked(false);
 		NodeType & d = m_nodes.at(i)->data();
 		d.second = infinity;
 	}
+
+	bool Found = false;
+
+	priority_queue<Node*, vector<Node*>, SearchCostComparer> Queue;
 
 	//Assign starting node to 0
 	NodeType & data = pStart->data();
 	data.second = 0;
 
-	pq.push(pStart);
+	Queue.push(pStart);
+
+	// Mark the start node
 	pStart->setMarked(true);
-	while (pq.empty() == false && pq.top() != pDest)
+
+	// Loop through Queue until empty or destination not reached
+	while (Queue.empty() == false && Queue.top() != pDest)
 	{
-		auto & arcList = pq.top()->arcList();
+		auto & arcList = Queue.top()->arcList();
 
-		for (auto arc : pq.top()->arcList()) // For each arc in arc list
+		for (auto arc : Queue.top()->arcList()) // For each arc in arc list
 		{
-			Node * n = arc.node();
+			Node * n = arc.node(); // get the node of the arc
 
-			if (n != pq.top()->previous())
+			if (n != Queue.top())
 			{
-				int distC = arc.weight() + pq.top()->data().second;
+				int Distance = arc.weight() + Queue.top()->data().second; //Get the weight of current arc and add it to value of top of queue
 
-				if (distC < n->data().second)
+				if (n->marked() == false)
 				{
-					n->data().second = distC;
-					n->setPrevious(pq.top());
+					// if node isn't marked, set top of queue as previous node
+					n->setPrevious(Queue.top());
+
+					if (Distance < n->data().second)
+					{
+						// Set distance to current node if it less than current distance
+						n->setData(pair<string, int>(n->data().first, Distance));
+					}
+
+					// Mark the node and push to queue
+					n->setMarked(true);
+					Queue.push(n);
 				}
 
-				if (!n->marked())
+				if (Distance < n->data().second)
 				{
-					pq.push(n);
-					n->setMarked(true);
+					// If distance is less than current nodes the assign distance to current node
+					// and set top of queue as previous node
+					n->data().second = Distance;
+					n->setPrevious(Queue.top());
+				}
+
+				// if destination node
+				if (n == pDest)
+				{
+					// check distance
+					if (Distance <= n->data().second)
+					{
+						// set data of node to be distance
+						n->data().second = Distance;
+						// set queue top as previous node
+						n->setPrevious(Queue.top());
+						if (Found)
+						{
+							// clear the path if a path already exists
+							path.clear();
+						}
+
+						// Set up temp node and assign current to path
+						Node * Temp = n;
+						path.push_back(Temp);
+
+						// Loop through Queue until Nodes have been added to path
+						while (Temp != pDest)
+						{
+							Temp = Temp->previous();
+							path.push_back(Temp);
+						}
+					}
 				}
 			}
 		}
 
-		pq.pop();
+		Queue.pop();
 	}
 
 	Node * current = pDest;
-
-	cout << "UCS Method" << endl;
-
-	while (current != nullptr)
-	{
-		cout << "Point : " << current->data().first;
-		cout << " |Distance : " << current->data().second << endl;
-		current = current->previous();
-	}
 
 	cout << endl;
 
@@ -362,9 +402,6 @@ void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, void(*pProcess)(No
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::aStar(Node * pStart, Node * pDest, void(*pProcess)(Node*), vector<Node *> &path)
 {
-	
-	ucs(pStart, pDest, pProcess, path);
-
 	Node * current = pDest;
 
 	cout << "Astar Method" << endl;

@@ -2,6 +2,8 @@
 
 Game::Game() : LoadData("GeneralGameData.json")
 {
+	srand(time(NULL));
+
 	TextureHandler = TextureLoader::Instance();
 
 	TextureHandler->addTexture("Player", "Assets/Player.png");

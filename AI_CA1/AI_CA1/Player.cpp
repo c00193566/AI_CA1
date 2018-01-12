@@ -18,7 +18,7 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 
 	PlayerSprite.setTexture(PlayerTexture);
 
-	PlayerSprite.setOrigin(8.0f, 8.0f);
+	PlayerSprite.setOrigin(PlayerTexture.getSize().x / 2, PlayerTexture.getSize().y / 2);
 
 	Position = position;
 	PlayerSprite.setPosition(Position);
@@ -30,8 +30,6 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 	Speed = 0.0f;
 
 	Friction = 0.8f;
-
-	Culling = false;
 
 	return true;
 }
@@ -83,11 +81,11 @@ void Player::Input(string Movement)
 	// Orientation of sprite
 	if (Movement == "RIGHT")
 	{
-		Orientation += 1.0f;
+		Orientation += 2.0f;
 	}
 	else if (Movement == "LEFT")
 	{
-		Orientation -= 1.0f;
+		Orientation -= 2.0f;
 	}
 
 	PlayerSprite.setRotation(Orientation);

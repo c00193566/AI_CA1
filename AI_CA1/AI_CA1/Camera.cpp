@@ -5,8 +5,8 @@ Camera::Camera()
 	Width = 720;
 	Height = 405;
 
-	CameraView = View(FloatRect(0, 0, Width, Height));
-	//CameraView = View(FloatRect(0, 0, 2000, 1000));
+	//CameraView = View(FloatRect(0, 0, Width, Height));
+	CameraView = View(FloatRect(0, 0, 2000, 1000));
 }
 
 Camera::~Camera()

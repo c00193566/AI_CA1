@@ -27,8 +27,6 @@ Bullet::Bullet(string Tag, Texture & LoadedTexture, Vector2f InputPosition, floa
 	Alive = true;
 
 	TimeAlive = 0;
-
-	Culling = false;
 }
 
 Bullet::~Bullet()

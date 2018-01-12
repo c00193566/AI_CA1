@@ -27,7 +27,10 @@ private:
 
 	// GameObjects
 	Player* PlayerObj;
-	vector<GameObject*> Objects;
+	vector<Basic*> Map;
+	vector<Worker*> Workers;
+	vector<Enemy*> Enemies;
+	vector<AlienNest*> Nests;
 	vector<Bullet*> Bullets;
 	int MaxBullets = 10;
 	int CurrentBullets = 0;
