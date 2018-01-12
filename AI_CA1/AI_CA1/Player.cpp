@@ -34,7 +34,7 @@ bool Player::Init(string Tag, Texture & LoadedTexture, Vector2f position)
 	Culling = false;
 
 	WorkersCollected = 0;
-	MaxWorkers = 3;
+	MaxWorkers = 2;
 
 	if (!Font.loadFromFile("Assets/OpenSans.ttf"))
 	{
@@ -157,6 +157,13 @@ void Player::Collision(string ObjType)
 	}
 	else if (ObjType == "Worker")
 	{
-		
+		WorkersCollected++;
+		WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
+
+		if (WorkersCollected >= MaxWorkers)
+		{
+			//game win
+			WorkerText.setString("Winner");
+		}
 	}
 }
