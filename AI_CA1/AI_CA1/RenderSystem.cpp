@@ -15,6 +15,11 @@ void RenderSystem::RenderSprite(Sprite & SpriteRender)
 	Renderer.draw(SpriteRender);
 }
 
+void RenderSystem::RenderText(Text & TextRenderer)
+{
+	Renderer.draw(TextRenderer);
+}
+
 void RenderSystem::setView(View & Camera)
 {
 	Renderer.setView(Camera);

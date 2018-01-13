@@ -25,6 +25,16 @@ private:
 	vector<Vector2f> Differences;
 	Vector2f HeartPosition;
 
+	int WorkersCollected;
+	int MaxWorkers;
+
+	//Font and Text
+	Font Font;
+	Text WorkerText;
+
+	Vector2f TextPosition;
+	Vector2f TextDifference;
+
 public:
 	Player();
 	~Player();
@@ -39,6 +49,8 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return PlayerSprite; };
 	string getType() { return Type; };
+	bool getCulled() { return Culling; }
+	void setCulled(bool set) { Culling = set; }
 	Vector2f getVelocity() { return Velocity; };
 	float getOrientation() { return Orientation; };
 };

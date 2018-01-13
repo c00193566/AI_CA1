@@ -16,5 +16,7 @@ public:
 	void Update(unsigned int);
 	Sprite getSprite() { return BasicSprite; };
 	string getType() { return Type; };
+	bool getCulled() { return Culling; }
+	void setCulled(bool set) { Culling = set; }
 	Vector2f getPosition() { return Position; };
 };

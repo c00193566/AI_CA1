@@ -27,6 +27,6 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return WorkerSprite; };
 	string getType() { return Type; };
-	bool getAlive() { return Alive; };
 	void setAlive(bool set) { Alive = set; };
+	bool getAlive() { return Alive; };
 };

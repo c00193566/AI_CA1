@@ -8,12 +8,13 @@ class Camera
 {
 private:
 	View CameraView;
-	float Width;
-	float Height;
+	int Width;
+	int Height;
 
 public:
 	Camera();
 	~Camera();
 	void Update(Vector2f);
 	View & getView() { return CameraView; };
+	bool Visible(Vector2f vec);
 };

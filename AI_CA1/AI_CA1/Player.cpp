@@ -46,6 +46,25 @@ bool Player::Init(string Tag, Vector2f position)
 
 	Friction = 0.8f;
 
+	Culling = false;
+
+	WorkersCollected = 0;
+	MaxWorkers = 2;
+
+	if (!Font.loadFromFile("Assets/OpenSans.ttf"))
+	{
+		cout << "Font not loaded" << endl;
+	}
+
+	TextPosition = Vector2f(500, 170);
+	TextDifference = TextPosition - Position;
+
+	WorkerText.setFont(Font);
+	WorkerText.setPosition(Position + TextDifference);
+	WorkerText.setFillColor(Color::White);
+	WorkerText.setCharacterSize(24);
+	WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
+
 	return true;
 }
 
@@ -87,6 +106,8 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 
 void Player::Update(unsigned int DT)
 {
+	WorkerText.setPosition(Position + TextDifference);
+
 	for (int i = 0; i < Lives; i++)
 	{
 		Hearts.at(i).setPosition(Position + Differences.at(i));
@@ -99,6 +120,7 @@ void Player::Update(unsigned int DT)
 void Player::Render(RenderSystem * Renderer)
 {
 	Renderer->RenderSprite(PlayerSprite);
+	Renderer->RenderText(WorkerText);
 
 	for (int i = 0; i < Hearts.size(); i++)
 	{
@@ -174,6 +196,13 @@ void Player::Collision(string ObjType)
 	else if (ObjType == "Worker")
 	{
 		WorkersCollected++;
+		WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
+
+		if (WorkersCollected >= MaxWorkers)
+		{
+			//game win
+			WorkerText.setString("Winner");
+		}
 	}
 	else if (ObjType == "Missile")
 	{

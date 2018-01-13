@@ -19,49 +19,58 @@ TestScene::TestScene()
 
 	// Set Up Player
 	PlayerObj = new Player;
-	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
+	PlayerObj->Init("Player", Vector2f(640, 360));
 
-	// First Room
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 264));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 640, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 608, 296));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 360));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 328));
-	Objects.push_back(new Basic("Walkway", TextureHandler->getTexture("Walkway_01"), 672, 296));
-
-	// Walls
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopLeft"), 576, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 608, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 672, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_TopRight"), 704, 264));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Left"), 576, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 296));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 328));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Right"), 704, 360));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 608, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 640, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_Bottom"), 672, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomLeft"), 576, 392));
-	Objects.push_back(new Basic("Wall", TextureHandler->getTexture("Wall_BottomRight"), 704, 392));
-
-<<<<<<< HEAD
-=======
-	// Add in Worker
-	Objects.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-
->>>>>>> 000de01f3d0e94ebbbfdcf0430e6122cb01ffc67
 	UP = false;
 	DOWN = false;
 	RIGHT = false;
 	LEFT = false;
 
 	IsRunning = true;
+
+	int temp[17][33] = {
+		{ 5, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 8 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 5, 7, 1, 6, 8, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
+		{ 6, 3, 3, 3, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 3, 3, 3, 7 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+	};
+
+	for (int i = 0; i < 17; i++)
+	{
+		for (int j = 0; j < 33; j++)
+		{
+			Level[i][j] = temp[i][j];
+		}
+	}
+}
+
+void TestScene::Initialise()
+{
+	for (int i = 0; i < GameData::m_maxGameObjects; i++)
+	{
+		if (GameData::m_gameObjectVector.at(i).type == "Walkway" || GameData::m_gameObjectVector.at(i).type == "Wall")
+		{
+			Map.push_back(new Basic(GameData::m_gameObjectVector.at(i).type, TextureHandler->getTexture(GameData::m_gameObjectVector.at(i).texture),
+				GameData::m_gameObjectVector.at(i).X, GameData::m_gameObjectVector.at(i).Y));
+		}
+	}
+
+	// Add in Worker
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
 void TestScene::Update(unsigned int DT)
@@ -74,19 +83,54 @@ void TestScene::Update(unsigned int DT)
 	PlayerMovement();
 
 	// Update GameObjects
-	for (int i = 0; i < Objects.size(); i++)
+	for (int i = 0; i < Workers.size(); i++)
 	{
+		Workers.at(i)->Update(DT);
+		Collision::PlayerCollision(Workers.at(i), PlayerObj);
+
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
+		}
+	}
+
+	for (int i = 0; i < Nests.size(); i++)
+	{
+<<<<<<< HEAD
 		Objects.at(i)->Update(DT);
+
+		Collision::PlayerCollision(Objects.at(i), PlayerObj);
 
 		if (Objects.at(i)->getType() == "Wall")
 		{
-			Collision::WallCollision(Objects.at(i), PlayerObj);
-
 			for (int j = 0; j < Bullets.size(); j++)
 			{
 				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
 			}
 		}
+		else if (Objects.at(i)->getType() == "Worker")
+		{
+			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
+			WorkerObj->FindTarget(Nodes);
+			if (!WorkerObj->getAlive())
+			{
+				Objects.erase(Objects.begin() + i);
+				break;
+			}
+		}
+		else if (Objects.at(i)->getType() == "AlienNest")
+		{
+			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
+			AlienObj->FindPlayer(PlayerObj->getPosition());
+			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
+		}
+=======
+		Nests.at(i)->Update(DT);
+		Nests.at(i)->FindPlayer(PlayerObj->getPosition());
+		Nests.at(i)->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
+		Collision::PlayerCollision(Nests.at(i), PlayerObj);
+>>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
 	}
 
 	// Update bullets
@@ -98,11 +142,6 @@ void TestScene::Update(unsigned int DT)
 		{
 			Bullets.erase(Bullets.begin() + i);
 			CurrentBullets--;
-		}
-		else if (Objects.at(i)->getType() == "Worker")
-		{
-			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-			WorkerObj->FindTarget(Objects);
 		}
 	}
 }
@@ -130,10 +169,98 @@ void TestScene::PlayerMovement()
 
 void TestScene::Render(RenderSystem *Renderer)
 {
-	// Renderer GameObjects
-	for (int i = 0; i < Objects.size(); i++)
+	for (int i = 0; i < 17; i++)
 	{
-		Objects.at(i)->Render(Renderer);
+		for (int j = 0; j < 41; j++)
+		{
+			Sprite Tile;
+			Texture TileTexture;
+			bool Culled = false;
+
+			if (!Culled)
+			{
+				if (Level[i][j] == 1) //Walkway
+				{
+					TileTexture = TextureHandler->getTexture("Walkway");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 2) //Left Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_Left");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 3) //Bottom Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_Bottom");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 4) //Right Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_Right");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 5) //Top Left Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_TopLeft");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 6) //Bottom Left Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_BottomLeft");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 7) //Bottom Right Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_BottomRight");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+
+				if (Level[i][j] == 8) //Top Right Wall
+				{
+					TileTexture = TextureHandler->getTexture("Wall_TopRight");
+					Tile.setTexture(TileTexture);
+					Tile.setPosition(j * 96, i * 96);
+					Renderer->RenderSprite(Tile);
+				}
+			}
+		}
+	}
+
+	// Renderer GameObjects
+	for (int i = 0; i < Map.size(); i++)
+	{
+		Map.at(i)->Render(Renderer);
+		Collision::PlayerCollision(Map.at(i), PlayerObj);
+	}
+
+	for (int i = 0; i < Workers.size(); i++)
+	{
+		Workers.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Nests.size(); i++)
+	{
+		Nests.at(i)->Render(Renderer);
 	}
 
 	for (int i = 0; i < Bullets.size(); i++)

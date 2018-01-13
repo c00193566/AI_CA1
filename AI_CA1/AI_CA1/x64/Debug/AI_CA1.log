@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Worker.cpp
 c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
 c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -61,3 +62,10 @@ c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C40
 c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Generating Code...
   AI_CA1.vcxproj -> C:\Users\Jack\Desktop\College\AI_CA1\AI_CA1\x64\Debug\AI_CA1.exe
+=======
+﻿  Player.cpp
+c:\users\gameuser\documents\ai project\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+c:\users\gameuser\documents\ai project\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  AI_CA1.vcxproj -> C:\Users\gameuser\Documents\AI Project\AI_CA1\AI_CA1\x64\Debug\AI_CA1.exe
+  AI_CA1.vcxproj -> C:\Users\gameuser\Documents\AI Project\AI_CA1\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)
+>>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d

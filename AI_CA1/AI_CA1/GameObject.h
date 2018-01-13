@@ -58,7 +58,10 @@ public:
 	virtual Sprite getSprite() = 0;
 	virtual string getType() = 0;
 	virtual Vector2f getPosition() = 0;
+	virtual bool getCulled() = 0;
+	virtual void setCulled(bool set) = 0;
 
 protected:
 	string Type;
+	bool Culling;
 };
