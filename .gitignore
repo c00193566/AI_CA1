@@ -1,31 +1,32 @@
+# Prerequisites
+*.d
 
-*.db
-*.db
-AI_CA1/.vs/AI_CA1/v15/.suo
-*.tlog
-*.log
-*.pdb
-*.idb
-*.ilk
-*.vcxproj
-*.orig
+# Compiled Object files
+*.slo
+*.lo
+*.o
 *.obj
-AI_CA1/.vs/AI_CA1/v15/.suo
-*.ipch
-*.tlog
-*.obj
-*.obj
-*.idb
-*.pdb
-*.ilk
-*.pdb
-AI_CA1/.vs/AI_CA1/v15/.suo
-*.db
-*.log
-*.lastbuildstate
-*.tlog
-*.obj
-*.idb
-*.pdb
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
 *.exe
-*.ilk
+*.out
+*.app
