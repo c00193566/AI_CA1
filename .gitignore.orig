@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+=======
+*.db
+AI_CA1/.vs/AI_CA1/v15/.suo
+*.tlog
+*.log
+*.lastbuildstate
+*.pdb
+*.idb
+*.ilk
+*.vcxproj
+*.orig
+*.ipch
+*.obj
+*.exe
+AI_CA1/.vs/AI_CA1/v15/.suo
+*.db
+*.ipch
+*.log
+*.lastbuildstate
+*.tlog
+*.obj
+*.exe
+*.ilk
+*.pdb
+>>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d

@@ -28,8 +28,6 @@ public:
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
 	void UpdateMissileInfo();
-	bool getCulled() { return Culling; }
-	void setCulled(bool set) { Culling = set; }
 	void FindPlayer(Vector2f);
 	void FireMissile(Vector2f);
 	vector<Missile*> getMissiles() { return Missiles; };

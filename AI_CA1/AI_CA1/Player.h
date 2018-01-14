@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "TextureLoader.h"
 
 class Player : public GameObject
 {
@@ -14,9 +15,16 @@ private:
 
 	float MaxSpeed = 5.0f;
 	float MinSpeed = 0.0f;
-
-	int WorkersCollected;
+	int Lives = 3;
+	int WorkersCollected = 0;
 	int MaxWorkers;
+
+	TextureLoader * TextureHandler;
+
+	Texture HeartTexture;
+	vector<Sprite> Hearts;
+	vector<Vector2f> Differences;
+	Vector2f HeartPosition;
 
 	//Font and Text
 	Font Font;
@@ -28,7 +36,7 @@ private:
 public:
 	Player();
 	~Player();
-	bool Init(string Tag, Texture & LoadedTexture, Vector2f position);
+	bool Init(string Tag, Vector2f position);
 	bool Init(string Tag, Texture & LoadedTexture, float x, float y);
 	void Render(RenderSystem *);
 	void Update(unsigned int);
@@ -39,8 +47,6 @@ public:
 	Vector2f getPosition() { return Position; };
 	Sprite getSprite() { return PlayerSprite; };
 	string getType() { return Type; };
-	bool getCulled() { return Culling; }
-	void setCulled(bool set) { Culling = set; }
 	Vector2f getVelocity() { return Velocity; };
 	float getOrientation() { return Orientation; };
 };

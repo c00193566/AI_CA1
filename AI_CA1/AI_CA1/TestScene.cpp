@@ -19,7 +19,7 @@ TestScene::TestScene()
 
 	// Set Up Player
 	PlayerObj = new Player;
-	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
+	PlayerObj->Init("Player", Vector2f(640, 360));
 
 	UP = false;
 	DOWN = false;
@@ -60,12 +60,6 @@ void TestScene::Update(unsigned int DT)
 	{
 		Workers.at(i)->Update(DT);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
-
-		if (!Workers.at(i)->getAlive())
-		{
-			Workers.erase(Workers.begin() + i);
-			break;
-		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)
@@ -77,14 +71,17 @@ void TestScene::Update(unsigned int DT)
 	}
 
 	// Update bullets
-	for (int i = 0; i < Bullets.size(); i++)
+	if (Bullets.size() > 0)
 	{
-		Bullets.at(i)->Update(DT);
-
-		if (!Bullets.at(i)->getAlive())
+		for (int i = 0; i < Bullets.size(); i++)
 		{
-			Bullets.erase(Bullets.begin() + i);
-			CurrentBullets--;
+			Bullets.at(i)->Update(DT);
+
+			if (!Bullets.at(i)->getAlive())
+			{
+				Bullets.erase(Bullets.begin() + i);
+				CurrentBullets--;
+			}
 		}
 	}
 }
@@ -122,6 +119,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Workers.size(); i++)
 	{
 		Workers.at(i)->Render(Renderer);
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
+		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)

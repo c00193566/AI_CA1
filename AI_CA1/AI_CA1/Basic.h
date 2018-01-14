@@ -7,6 +7,7 @@ private:
 	Texture BasicTexture;
 	Sprite BasicSprite;
 	Vector2f Position;
+	bool Culling;
 
 public:
 	Basic() {};

@@ -26,9 +26,6 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 
 	TargetFound = false;
 	TargetReached = false;
-
-	Culling = false;
-
 	Alive = true;
 }
 
@@ -69,35 +66,4 @@ void Worker::Movement()
 
 		Position += Velocity;
 		WorkerSprite.setPosition(Position);
-}
-
-void Worker::FindTarget(vector<Node*> Nodes)
-{
-	if (!TargetFound)
-	{
-		vector<Node*> PossibleTargets;
-
-		for (int i = 0; i < Nodes.size(); i++)
-		{
-			Vector2f Difference = Position - Nodes.at(i)->getPosition();
-			float Distance = Vector::Length(Difference);
-
-			if (!(Distance > 32 || Distance == 0))
-			{
-				if (!(Nodes.at(i)->Occupied()))
-				{
-					PossibleTargets.push_back(Nodes.at(i));
-				}
-			}
-		}
-
-		if (PossibleTargets.size() != NULL)
-		{
-			int RandomChoice = rand() % PossibleTargets.size();
-
-			Target = PossibleTargets.at(RandomChoice)->getPosition();
-
-			TargetFound = true;
-		}
-	}
 }

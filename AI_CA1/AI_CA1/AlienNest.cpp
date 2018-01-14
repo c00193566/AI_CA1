@@ -26,8 +26,6 @@ AlienNest::AlienNest(string Tag, Texture & LoadedTexture, float x, float y)
 	Range = 128;
 
 	MissileExists = false;
-
-	Culling = false;
 }
 
 AlienNest::~AlienNest()
