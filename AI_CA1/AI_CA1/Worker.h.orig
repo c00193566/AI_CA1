@@ -1,0 +1,60 @@
+#pragma once
+#include "stdafx.h"
+#include "Graph.h"
+#include "GameObject.h"
+<<<<<<< HEAD
+#include "Enemy.h"
+#include "Path.h"
+=======
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
+
+class Worker : public GameObject
+{
+	enum class States
+	{
+		Setup,
+		Search,
+		FollowPath
+	};
+
+	States CurrentState;
+	Texture WorkerTexture;
+	Sprite WorkerSprite;
+	Vector2f Position;
+	Vector2f Velocity;
+	float Speed;
+	float Orientation;
+	float Rotation;
+	Vector2f Target;
+<<<<<<< HEAD
+	int Start;
+	int End;
+
+	vector<Node*> Path;
+=======
+	bool TargetReached;
+	bool TargetFound;
+	bool Alive;
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
+
+public:
+	Worker();
+	Worker(string Tag, Texture & LoadedTexture, float x, float y);
+	~Worker();
+	void Render(RenderSystem *);
+	void Update(unsigned int, Graph<pair<string, int>, int>*, vector<Vector2f>*);
+	void Movement();
+	Vector2f getPosition() { return Position; };
+	Sprite getSprite() { return WorkerSprite; };
+	string getType() { return Type; };
+<<<<<<< HEAD
+	bool CheckBounds();
+	void Seek();
+	void OrientationToVelocity();
+	void Repulsion(vector<Worker*>);
+	void Repulsion(vector<Enemy*>);
+=======
+	void setAlive(bool set) { Alive = set; };
+	bool getAlive() { return Alive; };
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
+};

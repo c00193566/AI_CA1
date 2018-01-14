@@ -26,6 +26,7 @@ class Worker : public GameObject
 	int Start;
 	int End;
 
+	bool Alive;
 	vector<Node*> Path;
 
 public:
@@ -40,6 +41,8 @@ public:
 	string getType() { return Type; };
 	bool CheckBounds();
 	void Seek();
+	void setAlive(bool set) { Alive = set; };
+	bool getAlive() { return Alive; };
 	void OrientationToVelocity();
 	void Repulsion(vector<Worker*>);
 	void Repulsion(vector<Enemy*>);

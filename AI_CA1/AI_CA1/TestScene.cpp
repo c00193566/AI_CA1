@@ -22,7 +22,7 @@ TestScene::TestScene()
 
 	// Set Up Player
 	PlayerObj = new Player;
-	PlayerObj->Init("Player", TextureHandler->getTexture("Player"), Vector2f(640, 360));
+	PlayerObj->Init("Player", Vector2f(640, 360));
 
 	UP = false;
 	DOWN = false;
@@ -87,16 +87,13 @@ void TestScene::LoadGraph()
 	myfile.close();
 
 }
-
 void TestScene::Update(unsigned int DT)
 {
 	// Camera Update
 	SceneCamera.Update(PlayerObj->getPosition());
-
 	// Player Updates
 	PlayerObj->Update(DT);
 	PlayerMovement();
-
 	// Update GameObjects
 	for (int i = 0; i < Workers.size(); i++)
 	{
@@ -169,6 +166,10 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Workers.size(); i++)
 	{
 		Workers.at(i)->Render(Renderer);
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
 	}
 
 	for (int i = 0; i < Nests.size(); i++)

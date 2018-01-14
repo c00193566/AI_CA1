@@ -25,7 +25,7 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 	Speed = 1.0f;
 
 	CurrentState = States::Setup;
-
+	Alive = true;
 	Start = -1000;
 	End = -1000;
 
@@ -131,7 +131,6 @@ void Worker::Seek()
 
 	WorkerSprite.setRotation(Orientation);
 }
-
 void Worker::OrientationToVelocity()
 {
 	Orientation += Rotation;
@@ -164,7 +163,6 @@ void Worker::Repulsion(vector<Worker*> Objs)
 		Rotation = 0;
 	}
 }
-
 void Worker::Repulsion(vector<Enemy*> Objs)
 {
 	bool InRange = false;
