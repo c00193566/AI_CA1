@@ -27,7 +27,5 @@ public:
 	Sprite getSprite() { return BulletSprite; };
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
-	bool getCulled() { return Culling; }
-	void setCulled(bool set) { Culling = set; }
 	bool getAlive() { return Alive; };
 };

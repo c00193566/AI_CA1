@@ -5,7 +5,7 @@ Game::Game() : LoadData("GeneralGameData.json")
 	TextureHandler = TextureLoader::Instance();
 
 	TextureHandler->addTexture("Player", "Assets/Player.png");
-	TextureHandler->addTexture("Walkway", "Assets/Walkway.png");
+	TextureHandler->addTexture("Walkway_01", "Assets/Walkway_01.png");
 	TextureHandler->addTexture("Wall_TopLeft", "Assets/Wall_TopLeft.png");
 	TextureHandler->addTexture("Wall_BottomRight", "Assets/Wall_BottomRight.png");
 	TextureHandler->addTexture("Wall_BottomLeft", "Assets/Wall_BottomLeft.png");

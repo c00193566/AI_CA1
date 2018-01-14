@@ -4,7 +4,6 @@
 #include "InputManager.h"
 #include "TextureLoader.h"
 #include "GameData.h"
-#include "Node.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Basic.h"
@@ -38,8 +37,6 @@ private:
 
 	// Private methods
 	void PlayerMovement();
-
-	int Level[17][33];
 
 public:
 	TestScene();

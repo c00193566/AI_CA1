@@ -27,33 +27,6 @@ TestScene::TestScene()
 	LEFT = false;
 
 	IsRunning = true;
-
-	int temp[17][33] = {
-		{ 5, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 8 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 5, 7, 1, 6, 8, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 6, 3, 3, 3, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 3, 3, 3, 7 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-	};
-
-	for (int i = 0; i < 17; i++)
-	{
-		for (int j = 0; j < 33; j++)
-		{
-			Level[i][j] = temp[i][j];
-		}
-	}
 }
 
 void TestScene::Initialise()
@@ -87,20 +60,9 @@ void TestScene::Update(unsigned int DT)
 	{
 		Workers.at(i)->Update(DT);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
-
-		if (!Workers.at(i)->getAlive())
-		{
-			Workers.erase(Workers.begin() + i);
-			break;
-		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)
-			if (!WorkerObj->getAlive())
-			{
-				Objects.erase(Objects.begin() + i);
-				break;
-			}
 	{
 		Nests.at(i)->Update(DT);
 		Nests.at(i)->FindPlayer(PlayerObj->getPosition());
@@ -109,14 +71,17 @@ void TestScene::Update(unsigned int DT)
 	}
 
 	// Update bullets
-	for (int i = 0; i < Bullets.size(); i++)
+	if (Bullets.size() > 0)
 	{
-		Bullets.at(i)->Update(DT);
-
-		if (!Bullets.at(i)->getAlive())
+		for (int i = 0; i < Bullets.size(); i++)
 		{
-			Bullets.erase(Bullets.begin() + i);
-			CurrentBullets--;
+			Bullets.at(i)->Update(DT);
+
+			if (!Bullets.at(i)->getAlive())
+			{
+				Bullets.erase(Bullets.begin() + i);
+				CurrentBullets--;
+			}
 		}
 	}
 }
@@ -144,83 +109,6 @@ void TestScene::PlayerMovement()
 
 void TestScene::Render(RenderSystem *Renderer)
 {
-	for (int i = 0; i < 17; i++)
-	{
-		for (int j = 0; j < 41; j++)
-		{
-			Sprite Tile;
-			Texture TileTexture;
-			bool Culled = false;
-
-			if (!Culled)
-			{
-				if (Level[i][j] == 1) //Walkway
-				{
-					TileTexture = TextureHandler->getTexture("Walkway");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 2) //Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Left");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 3) //Bottom Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Bottom");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 4) //Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Right");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 5) //Top Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_TopLeft");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 6) //Bottom Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_BottomLeft");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 7) //Bottom Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_BottomRight");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 8) //Top Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_TopRight");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-			}
-		}
-	}
-
 	// Renderer GameObjects
 	for (int i = 0; i < Map.size(); i++)
 	{
@@ -231,6 +119,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Workers.size(); i++)
 	{
 		Workers.at(i)->Render(Renderer);
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
+		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)

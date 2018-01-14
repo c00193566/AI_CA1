@@ -46,8 +46,6 @@ bool Player::Init(string Tag, Vector2f position)
 
 	Friction = 0.8f;
 
-	Culling = false;
-
 	WorkersCollected = 0;
 	MaxWorkers = 2;
 
