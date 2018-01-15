@@ -2,6 +2,9 @@
 
 TestScene::TestScene()
 {
+	// Load in Waypoints
+	LoadGraph();
+
 	// Set up listeners for input handler
 	InputHandler.AddListener(EventListener::Event::QUIT, this);
 	InputHandler.AddListener(EventListener::Event::UP, this);
@@ -43,22 +46,60 @@ void TestScene::Initialise()
 	// Add in Worker
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
 }
 
+void TestScene::LoadGraph()
+{
+	GraphData = new Graph<pair<string, int>, int>(4);
+
+	ifstream myfile;
+	
+	int Max = numeric_limits<int>::max() - 10000;
+
+	myfile.open("Resources/Nodes.txt");
+
+	string Name;
+	int index = 0;
+	int X = 0; 
+	int Y = 0;
+
+	while (myfile >> Name >> X >> Y)
+	{
+		GraphData->addNode(pair<string, int>(Name, Max), index);
+		Waypoints.push_back(Vector2f(X, Y));
+		index++;
+	}
+
+	myfile.close();
+
+	//Adds arcs
+	myfile.open("Resources/Arcs.txt");
+
+	int from, to, weight;
+
+	while (myfile >> from >> to >> weight)
+	{
+		GraphData->addArc(from, to, weight);
+	}
+
+	myfile.close();
+
+}
 void TestScene::Update(unsigned int DT)
 {
 	// Camera Update
 	SceneCamera.Update(PlayerObj->getPosition());
-
 	// Player Updates
 	PlayerObj->Update(DT);
 	PlayerMovement();
-
 	// Update GameObjects
 	for (int i = 0; i < Workers.size(); i++)
 	{
-		Workers.at(i)->Update(DT);
+		Workers.at(i)->Repulsion(Workers);
+		Workers.at(i)->Repulsion(Enemies);
+		Workers.at(i)->Update(DT, GraphData, &Waypoints);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
 	}
 
@@ -68,6 +109,12 @@ void TestScene::Update(unsigned int DT)
 		Nests.at(i)->FindPlayer(PlayerObj->getPosition());
 		Nests.at(i)->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
 		Collision::PlayerCollision(Nests.at(i), PlayerObj);
+	}
+
+	for (int i = 0; i < Enemies.size(); i++)
+	{
+		Enemies.at(i)->Update(DT, GraphData, &Waypoints, PlayerObj->getPosition());
+		Collision::PlayerCollision(Enemies.at(i), PlayerObj);
 	}
 
 	// Update bullets
@@ -129,6 +176,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Nests.size(); i++)
 	{
 		Nests.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Enemies.size(); i++)
+	{
+		Enemies.at(i)->Render(Renderer);
 	}
 
 	for (int i = 0; i < Bullets.size(); i++)

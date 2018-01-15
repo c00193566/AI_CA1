@@ -13,7 +13,7 @@ Bullet::Bullet(string Tag, Texture & LoadedTexture, Vector2f InputPosition, floa
 
 	BulletSprite.setTexture(BulletTexture);
 
-	BulletSprite.setOrigin(4.0f, 4.0f);
+	BulletSprite.setOrigin(BulletTexture.getSize().x / 2, BulletTexture.getSize().x / 2);
 
 	Position = InputPosition;
 

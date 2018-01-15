@@ -20,7 +20,7 @@ bool Player::Init(string Tag, Vector2f position)
 
 	PlayerSprite.setTexture(PlayerTexture);
 
-	PlayerSprite.setOrigin(8.0f, 8.0f);
+	PlayerSprite.setOrigin(PlayerTexture.getSize().x / 2, PlayerTexture.getSize().y / 2);
 
 	Position = position;
 	PlayerSprite.setPosition(Position);
@@ -46,8 +46,8 @@ bool Player::Init(string Tag, Vector2f position)
 
 	Friction = 0.8f;
 
-	Culling = false;
-
+<<<<<<< HEAD
+=======
 	WorkersCollected = 0;
 	MaxWorkers = 2;
 
@@ -65,6 +65,7 @@ bool Player::Init(string Tag, Vector2f position)
 	WorkerText.setCharacterSize(24);
 	WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
 
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 	return true;
 }
 
@@ -106,14 +107,12 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 
 void Player::Update(unsigned int DT)
 {
-<<<<<<< HEAD
+	WorkerText.setPosition(Position + TextDifference);
+
 	for (int i = 0; i < Lives; i++)
 	{
 		Hearts.at(i).setPosition(Position + Differences.at(i));
 	}
-=======
-	WorkerText.setPosition(Position + TextDifference);
->>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
 
 	Movement();
 	SetVelocity();
@@ -122,16 +121,13 @@ void Player::Update(unsigned int DT)
 void Player::Render(RenderSystem * Renderer)
 {
 	Renderer->RenderSprite(PlayerSprite);
-<<<<<<< HEAD
+	Renderer->RenderText(WorkerText);
 
 	for (int i = 0; i < Hearts.size(); i++)
 	{
 		Renderer->RenderSprite(Hearts.at(i));
 	}
 	
-=======
-	Renderer->RenderText(WorkerText);
->>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
 }
 
 void Player::Movement()
@@ -146,11 +142,11 @@ void Player::Input(string Movement)
 	// Orientation of sprite
 	if (Movement == "RIGHT")
 	{
-		Orientation += 1.0f;
+		Orientation += 2.0f;
 	}
 	else if (Movement == "LEFT")
 	{
-		Orientation -= 1.0f;
+		Orientation -= 2.0f;
 	}
 
 	PlayerSprite.setRotation(Orientation);
@@ -201,7 +197,13 @@ void Player::Collision(string ObjType)
 	else if (ObjType == "Worker")
 	{
 		WorkersCollected++;
-<<<<<<< HEAD
+		WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
+
+		if (WorkersCollected >= MaxWorkers)
+		{
+			//game win
+			WorkerText.setString("Winner");
+		}
 	}
 	else if (ObjType == "Missile")
 	{
@@ -211,14 +213,5 @@ void Player::Collision(string ObjType)
 			Hearts.pop_back();
 		}
 		cout << Lives << endl;
-=======
-		WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
-
-		if (WorkersCollected >= MaxWorkers)
-		{
-			//game win
-			WorkerText.setString("Winner");
-		}
->>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
 	}
 }

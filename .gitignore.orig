@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Prerequisites
 *.d
 
@@ -29,30 +28,18 @@
 
 # Executables
 *.exe
-*.out
-*.app
-=======
+<<<<<<< HEAD
 *.db
-AI_CA1/.vs/AI_CA1/v15/.suo
-*.tlog
+*.ipch
 *.log
-*.lastbuildstate
+*.enc
+*.obj
 *.pdb
 *.idb
-*.ilk
-*.vcxproj
-*.orig
-*.ipch
-*.obj
-*.exe
-AI_CA1/.vs/AI_CA1/v15/.suo
-*.db
-*.ipch
-*.log
-*.lastbuildstate
-*.tlog
-*.obj
 *.exe
 *.ilk
 *.pdb
->>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
+=======
+*.out
+*.app
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621

@@ -1,7 +1,9 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game() : LoadData("GeneralGameData.json")
 {
+	srand(time(NULL));
+
 	TextureHandler = TextureLoader::Instance();
 
 	TextureHandler->addTexture("Player", "Assets/Player.png");
@@ -13,11 +15,15 @@ Game::Game()
 	TextureHandler->addTexture("Wall_Left", "Assets/Wall_Left.png");
 	TextureHandler->addTexture("Wall_Right", "Assets/Wall_Right.png");
 	TextureHandler->addTexture("Wall_Bottom", "Assets/Wall_Bottom.png");
-<<<<<<< HEAD
 	TextureHandler->addTexture("Bullet", "Assets/Bullet.png");
-=======
 	TextureHandler->addTexture("Worker", "Assets/Worker.png");
->>>>>>> 000de01f3d0e94ebbbfdcf0430e6122cb01ffc67
+	TextureHandler->addTexture("AlienNest", "Assets/AlienNest.png");
+	TextureHandler->addTexture("Missile", "Assets/Missile.png");
+<<<<<<< HEAD
+	TextureHandler->addTexture("Enemy", "Assets/Enemy.png");
+=======
+	TextureHandler->addTexture("Heart", "Assets/Heart.png");
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 }
 
 Game::~Game()
@@ -35,6 +41,10 @@ bool Game::Init(int x, int y, string title)
 	IsRunning = true;
 
 	SceneHandler = SceneManager(Renderer);
+
+	LoadData.getGameData("TestScene");
+
+	SceneHandler.LoadNextLevel();
 
 	return true;
 }

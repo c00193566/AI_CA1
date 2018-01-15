@@ -54,7 +54,6 @@ class GameObject
 {
 public:
 	virtual void Render(RenderSystem *) = 0;
-	virtual void Update(unsigned int) = 0;
 	virtual Sprite getSprite() = 0;
 	virtual string getType() = 0;
 	virtual Vector2f getPosition() = 0;

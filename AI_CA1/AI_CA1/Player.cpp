@@ -20,7 +20,7 @@ bool Player::Init(string Tag, Vector2f position)
 
 	PlayerSprite.setTexture(PlayerTexture);
 
-	PlayerSprite.setOrigin(8.0f, 8.0f);
+	PlayerSprite.setOrigin(PlayerTexture.getSize().x / 2, PlayerTexture.getSize().y / 2);
 
 	Position = position;
 	PlayerSprite.setPosition(Position);
@@ -62,7 +62,6 @@ bool Player::Init(string Tag, Vector2f position)
 	WorkerText.setFillColor(Color::White);
 	WorkerText.setCharacterSize(24);
 	WorkerText.setString("Workers Collected: " + to_string(WorkersCollected) + "/" + to_string(MaxWorkers));
-
 	return true;
 }
 
@@ -139,11 +138,11 @@ void Player::Input(string Movement)
 	// Orientation of sprite
 	if (Movement == "RIGHT")
 	{
-		Orientation += 1.0f;
+		Orientation += 2.0f;
 	}
 	else if (Movement == "LEFT")
 	{
-		Orientation -= 1.0f;
+		Orientation -= 2.0f;
 	}
 
 	PlayerSprite.setRotation(Orientation);

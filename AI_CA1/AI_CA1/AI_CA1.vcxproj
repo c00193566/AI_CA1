@@ -24,19 +24,25 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphArc.h" />
+    <ClInclude Include="GraphNode.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="JSON.h" />
     <ClInclude Include="JSONValue.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="Path.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SearchCostComparer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TextureLoader.h" />
@@ -48,6 +54,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="JSON.cpp" />
@@ -55,6 +62,7 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="Path.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -64,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GeneralGameData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Arcs.txt" />
+    <Text Include="Resources\Nodes.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -13,7 +13,7 @@ private:
 	float Orientation;
 	float Friction;
 
-	float MaxSpeed = 5.0f;
+	float MaxSpeed = 2.5f;
 	float MinSpeed = 0.0f;
 	int Lives = 3;
 	int WorkersCollected = 0;

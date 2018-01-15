@@ -2,6 +2,9 @@
 
 TestScene::TestScene()
 {
+	// Load in Waypoints
+	LoadGraph();
+
 	// Set up listeners for input handler
 	InputHandler.AddListener(EventListener::Event::QUIT, this);
 	InputHandler.AddListener(EventListener::Event::UP, this);
@@ -27,33 +30,6 @@ TestScene::TestScene()
 	LEFT = false;
 
 	IsRunning = true;
-
-	int temp[17][33] = {
-		{ 5, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 0, 0, 5, 3, 3, 3, 3, 3, 3, 8 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 3, 7, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 5, 3, 3, 3, 3, 3, 3, 3, 8, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 5, 7, 1, 6, 8, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 2, 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 4 },
-		{ 6, 3, 3, 3, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 3, 3, 3, 7 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 3, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-	};
-
-	for (int i = 0; i < 17; i++)
-	{
-		for (int j = 0; j < 33; j++)
-		{
-			Level[i][j] = temp[i][j];
-		}
-	}
 }
 
 void TestScene::Initialise()
@@ -70,7 +46,50 @@ void TestScene::Initialise()
 	// Add in Worker
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+<<<<<<< HEAD
+	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
+}
+
+void TestScene::LoadGraph()
+{
+	GraphData = new Graph<pair<string, int>, int>(4);
+
+	ifstream myfile;
+	
+	int Max = numeric_limits<int>::max() - 10000;
+
+	myfile.open("Resources/Nodes.txt");
+
+	string Name;
+	int index = 0;
+	int X = 0; 
+	int Y = 0;
+
+	while (myfile >> Name >> X >> Y)
+	{
+		GraphData->addNode(pair<string, int>(Name, Max), index);
+		Waypoints.push_back(Vector2f(X, Y));
+		index++;
+	}
+
+	myfile.close();
+
+	//Adds arcs
+	myfile.open("Resources/Arcs.txt");
+
+	int from, to, weight;
+
+	while (myfile >> from >> to >> weight)
+	{
+		GraphData->addArc(from, to, weight);
+	}
+
+	myfile.close();
+
+=======
+	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 }
 
 void TestScene::Update(unsigned int DT)
@@ -85,63 +104,45 @@ void TestScene::Update(unsigned int DT)
 	// Update GameObjects
 	for (int i = 0; i < Workers.size(); i++)
 	{
+<<<<<<< HEAD
+		Workers.at(i)->Repulsion(Workers);
+		Workers.at(i)->Repulsion(Enemies);
+		Workers.at(i)->Update(DT, GraphData, &Waypoints);
+=======
 		Workers.at(i)->Update(DT);
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
-
-		if (!Workers.at(i)->getAlive())
-		{
-			Workers.erase(Workers.begin() + i);
-			break;
-		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)
 	{
-<<<<<<< HEAD
-		Objects.at(i)->Update(DT);
-
-		Collision::PlayerCollision(Objects.at(i), PlayerObj);
-
-		if (Objects.at(i)->getType() == "Wall")
-		{
-			for (int j = 0; j < Bullets.size(); j++)
-			{
-				Collision::BulletWallCollision(Objects.at(i), Bullets.at(j));
-			}
-		}
-		else if (Objects.at(i)->getType() == "Worker")
-		{
-			Worker * WorkerObj = static_cast<Worker*>(Objects.at(i));
-			WorkerObj->FindTarget(Nodes);
-			if (!WorkerObj->getAlive())
-			{
-				Objects.erase(Objects.begin() + i);
-				break;
-			}
-		}
-		else if (Objects.at(i)->getType() == "AlienNest")
-		{
-			AlienNest * AlienObj = static_cast<AlienNest*>(Objects.at(i));
-			AlienObj->FindPlayer(PlayerObj->getPosition());
-			AlienObj->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
-		}
-=======
 		Nests.at(i)->Update(DT);
 		Nests.at(i)->FindPlayer(PlayerObj->getPosition());
 		Nests.at(i)->UpdateMissile(DT, PlayerObj->getPosition(), PlayerObj->getVelocity());
 		Collision::PlayerCollision(Nests.at(i), PlayerObj);
->>>>>>> a32f2773aac087d49cca2cecf337de3d4bbc7b6d
+<<<<<<< HEAD
+	}
+
+	for (int i = 0; i < Enemies.size(); i++)
+	{
+		Enemies.at(i)->Update(DT, GraphData, &Waypoints, PlayerObj->getPosition());
+		Collision::PlayerCollision(Enemies.at(i), PlayerObj);
+=======
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 	}
 
 	// Update bullets
-	for (int i = 0; i < Bullets.size(); i++)
+	if (Bullets.size() > 0)
 	{
-		Bullets.at(i)->Update(DT);
-
-		if (!Bullets.at(i)->getAlive())
+		for (int i = 0; i < Bullets.size(); i++)
 		{
-			Bullets.erase(Bullets.begin() + i);
-			CurrentBullets--;
+			Bullets.at(i)->Update(DT);
+
+			if (!Bullets.at(i)->getAlive())
+			{
+				Bullets.erase(Bullets.begin() + i);
+				CurrentBullets--;
+			}
 		}
 	}
 }
@@ -169,85 +170,9 @@ void TestScene::PlayerMovement()
 
 void TestScene::Render(RenderSystem *Renderer)
 {
-	for (int i = 0; i < 17; i++)
-	{
-		for (int j = 0; j < 41; j++)
-		{
-			Sprite Tile;
-			Texture TileTexture;
-			bool Culled = false;
-
-			if (!Culled)
-			{
-				if (Level[i][j] == 1) //Walkway
-				{
-					TileTexture = TextureHandler->getTexture("Walkway");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 2) //Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Left");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 3) //Bottom Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Bottom");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 4) //Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_Right");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 5) //Top Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_TopLeft");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 6) //Bottom Left Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_BottomLeft");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 7) //Bottom Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_BottomRight");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-
-				if (Level[i][j] == 8) //Top Right Wall
-				{
-					TileTexture = TextureHandler->getTexture("Wall_TopRight");
-					Tile.setTexture(TileTexture);
-					Tile.setPosition(j * 96, i * 96);
-					Renderer->RenderSprite(Tile);
-				}
-			}
-		}
-	}
-
 	// Renderer GameObjects
 	for (int i = 0; i < Map.size(); i++)
+<<<<<<< HEAD
 	{
 		Map.at(i)->Render(Renderer);
 		Collision::PlayerCollision(Map.at(i), PlayerObj);
@@ -256,6 +181,31 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Workers.size(); i++)
 	{
 		Workers.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Nests.size(); i++)
+	{
+		Nests.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Enemies.size(); i++)
+	{
+		Enemies.at(i)->Render(Renderer);
+=======
+	{
+		Map.at(i)->Render(Renderer);
+		Collision::PlayerCollision(Map.at(i), PlayerObj);
+	}
+
+	for (int i = 0; i < Workers.size(); i++)
+	{
+		Workers.at(i)->Render(Renderer);
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
+		}
+>>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
 	}
 
 	for (int i = 0; i < Nests.size(); i++)
