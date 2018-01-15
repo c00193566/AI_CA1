@@ -86,13 +86,13 @@ void AlienNest::FindPlayer(Vector2f PlayerPosition)
 			if (Distance <= Range)
 			{
 				PlayerFound = true;
-				FireMissile(PlayerPosition);
+				FireMissile();
 			}
 		}
 	}
 }
 
-void AlienNest::FireMissile(Vector2f PlayerPosition)
+void AlienNest::FireMissile()
 {
 	if (PlayerFound && !MissileExists)
 	{
