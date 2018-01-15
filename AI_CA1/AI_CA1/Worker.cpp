@@ -72,7 +72,6 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 	}
 	else if (CurrentState == States::FollowPath)
 	{
-
 		// Check if reached endpoint
 		if (Start == End)
 		{
