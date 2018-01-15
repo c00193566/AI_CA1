@@ -1,4 +1,13 @@
-﻿  Camera.cpp
-c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\camera.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Bullet.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\bullet.cpp(16): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TestScene.cpp
+  SceneManager.cpp
+  Main.cpp
+  Game.cpp
+  Collision.cpp
   AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.exe
   AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)

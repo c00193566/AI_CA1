@@ -1,6 +1,19 @@
 #pragma once
 #include "GameObject.h"
 
+/**
+* \class Basic
+*
+* \brief Basic object to draw on screen
+*
+* This class is used to create decoration tiles
+* such as the walkway tile and the wall tiles.
+* It has no update function and is only used to
+* draw the tile to the screen at a set position.
+*
+* \author $Author: Jack Keogh $
+*/
+
 class Basic : public GameObject
 {
 private:
