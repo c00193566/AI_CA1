@@ -37,10 +37,7 @@
     <ClInclude Include="JSONValue.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Missile.h" />
-<<<<<<< HEAD
     <ClInclude Include="Path.h" />
-=======
->>>>>>> 5a23af2a8aee47d71dfeb0c50b03c267e0caa621
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Scene.h" />

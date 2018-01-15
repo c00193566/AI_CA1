@@ -13,7 +13,7 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 
 	EnemySprite.setTexture(EnemyTexture);
 
-	EnemySprite.setOrigin(8.0f, 8.0f);
+	EnemySprite.setOrigin(EnemyTexture.getSize().x / 2, EnemyTexture.getSize().y / 2);
 
 	Position = Vector2f(x, y);
 	EnemySprite.setPosition(Position);
@@ -58,7 +58,6 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 	}
 	else if (CurrentState == States::Search)
 	{
-		cout << "Searching..." << endl;
 		// Is Player in range?
 		Vector2f Dir = PlayerPos - Position;
 		float Dis = Vector::Length(Dir);
@@ -80,18 +79,15 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 				Start = Path::NearestPointIndex(WayPoints, Position);
 				End = Point;
 				Path = Path::UniformCostSearch(GraphData, WayPoints, Start, End);
-				cout << Start << " , " << End << endl;
 				CurrentState = States::FollowPath;
 			}
 		}
 	}
 	else if (CurrentState == States::FollowPath)
 	{
-
 		// Check if reached endpoint
 		if (Start == End)
 		{
-			cout << "Location : " << Position.x << " , " << Position.y << endl;
 			CurrentState = States::Search;
 			return;
 		}

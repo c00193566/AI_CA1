@@ -170,6 +170,7 @@ void TestScene::Render(RenderSystem *Renderer)
 		{
 			Workers.erase(Workers.begin() + i);
 			break;
+		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)

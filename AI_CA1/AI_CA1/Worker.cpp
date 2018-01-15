@@ -13,7 +13,7 @@ Worker::Worker(string Tag, Texture & LoadedTexture, float x, float y)
 
 	WorkerSprite.setTexture(WorkerTexture);
 
-	WorkerSprite.setOrigin(8.0f, 8.0f);
+	WorkerSprite.setOrigin(WorkerTexture.getSize().x / 2, WorkerTexture.getSize().y / 2);
 
 	Position = Vector2f(x, y);
 	WorkerSprite.setPosition(Position);
