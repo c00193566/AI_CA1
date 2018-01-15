@@ -48,6 +48,7 @@ void TestScene::Initialise()
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
 	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
+	Sweepers.push_back(new Sweeper("Sweeper", TextureHandler->getTexture("Sweeper"), 640, 296));
 }
 
 void TestScene::LoadGraph()
@@ -115,6 +116,11 @@ void TestScene::Update(unsigned int DT)
 	{
 		Enemies.at(i)->Update(DT, GraphData, &Waypoints, PlayerObj->getPosition());
 		Collision::PlayerCollision(Enemies.at(i), PlayerObj);
+	}
+	
+	for (int i = 0; i < Sweepers.size(); i++)
+	{
+		Sweepers.at(i)->Update(DT, GraphData, &Waypoints, &Enemies);
 	}
 
 	// Update bullets
@@ -186,6 +192,11 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Bullets.size(); i++)
 	{
 		Bullets.at(i)->Render(Renderer);
+	}
+
+	for (int i = 0; i < Sweepers.size(); i++)
+	{
+		Sweepers.at(i)->Render(Renderer);
 	}
 
 	Renderer->setView(SceneCamera.getView());

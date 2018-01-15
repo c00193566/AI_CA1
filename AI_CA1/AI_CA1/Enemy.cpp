@@ -107,7 +107,7 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 
 		// Check if comes into range
 		Vector2f Dir = PlayerPos - Position;
-		float Dis = Vector::Length(Dir);		
+		float Dis = Vector::Length(Dir);
 
 		if (Dis < MaxRange)
 		{

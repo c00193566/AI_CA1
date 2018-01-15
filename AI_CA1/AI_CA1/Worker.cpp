@@ -130,6 +130,7 @@ void Worker::Seek()
 
 	WorkerSprite.setRotation(Orientation);
 }
+
 void Worker::OrientationToVelocity()
 {
 	Orientation += Rotation;
