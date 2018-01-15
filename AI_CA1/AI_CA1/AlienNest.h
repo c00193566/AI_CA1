@@ -61,7 +61,7 @@ public:
 	/// Return AlienNestSprite the sprite component of the object.
 	Sprite getSprite() { return AlienNestSprite; };
 
-	/// Return Type a string component that dictates the object type.
+	/// Return Type a string variable that dictates the object type.
 	string getType() { return Type; };
 
 	/// Return Position a Vector2f variable that gives the object a position.
@@ -86,7 +86,9 @@ public:
 	 */
 	void FindPlayer(Vector2f PlayerPosition);
 
-	
+	/// Creates a new missile and if one does not exist
 	void FireMissile();
+
+	/// Return Missiles a vector container for Missile objects.
 	vector<Missile*> getMissiles() { return Missiles; };
 };

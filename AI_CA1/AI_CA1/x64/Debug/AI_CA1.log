@@ -1,31 +1,4 @@
-﻿  AlienNest.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  Compiling...
-  TestScene.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\testscene.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\testscene.cpp(71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SceneManager.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-  Main.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\main.cpp(6): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Game.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Collision.cpp
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(51): warning C4091: 'static ': ignored on left of 'Vector' when no variable is declared
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\gameobject.h(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jack\desktop\college\ai_ca1\ai_ca1\ai_ca1\collision.h(11): warning C4091: 'static ': ignored on left of 'Collision' when no variable is declared
-  Generating Code...
-  AI_CA1.vcxproj -> C:\Users\Jack\Desktop\College\AI_CA1\AI_CA1\x64\Debug\AI_CA1.exe
+﻿  Camera.cpp
+c:\users\gameuser\desktop\college\aiproject\ai_ca1\ai_ca1\camera.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.exe
+  AI_CA1.vcxproj -> C:\Users\gameuser\Desktop\College\AIProject\AI_CA1\x64\Debug\AI_CA1.pdb (Partial PDB)
