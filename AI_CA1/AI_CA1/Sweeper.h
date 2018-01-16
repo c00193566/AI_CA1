@@ -4,6 +4,7 @@
 #include "Graph.h"
 #include "Path.h"
 #include "Enemy.h"
+#include "Worker.h"
 
 class Sweeper : public GameObject
 {
@@ -12,7 +13,8 @@ private:
 	{
 		Setup,
 		Search,
-		FollowPath
+		FollowPath,
+		FollowWorker
 	};
 
 	States CurrentState;
@@ -31,13 +33,14 @@ private:
 
 	bool Alive;
 	vector<Node*> Path;
+	Worker * WorkerTarget;
 
 public:
 	Sweeper();
 	Sweeper(string Tag, Texture & LoadedTexture, float x, float y);
 	~Sweeper();
 	void Render(RenderSystem *);
-	void Update(unsigned int, Graph<pair<string, int>, int>*, vector<Vector2f>*, vector<Enemy*>*);
+	void Update(unsigned int, Graph<pair<string, int>, int>*, vector<Vector2f>*, vector<Worker*>*);
 	void Seek();
 	void Movement();
 	Sprite getSprite() { return SweeperSprite; };

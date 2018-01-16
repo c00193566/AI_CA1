@@ -120,7 +120,7 @@ void TestScene::Update(unsigned int DT)
 	
 	for (int i = 0; i < Sweepers.size(); i++)
 	{
-		Sweepers.at(i)->Update(DT, GraphData, &Waypoints, &Enemies);
+		Sweepers.at(i)->Update(DT, GraphData, &Waypoints, &Workers);
 	}
 
 	// Update bullets

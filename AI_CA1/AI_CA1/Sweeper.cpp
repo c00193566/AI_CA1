@@ -35,6 +35,8 @@ Sweeper::Sweeper(string Tag, Texture & LoadedTexture, float x, float y)
 	Rotation = 0;
 
 	Path = vector<Node*>();
+
+	WorkerTarget = nullptr;
 }
 
 Sweeper::~Sweeper()
@@ -47,7 +49,7 @@ void Sweeper::Render(RenderSystem * Renderer)
 	Renderer->RenderSprite(SweeperSprite);
 }
 
-void Sweeper::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * Waypoints, vector<Enemy*> * WorkerPos)
+void Sweeper::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, vector<Vector2f> * Waypoints, vector<Worker*> * Workers)
 {
 	if (CurrentState == States::Setup)
 	{
@@ -60,17 +62,57 @@ void Sweeper::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData,
 	}
 	else if (CurrentState == States::Search)
 	{
-		// Not in Range, generate random index
-		int Point = rand() % Waypoints->size();
-		End = Path::NearestPointIndex(Waypoints, Position);
+		// Get the Closest Worker
+		if (Workers->size() > 0)
+		{
+			int MinDistance = numeric_limits<int>::max() - 10000; // infinity
+			for (int i = 0; i < Workers->size(); i++)
+			{
+				Vector2f Dir = Position - Workers->at(i)->getPosition();
+				float Dis = Vector::Length(Dir);
 
-		// Don't want to go to last point
-		if (Point != End)
+				if (Dis < MinDistance)
+				{
+					WorkerTarget = Workers->at(i);
+				}
+			}
+		}
+		else
+		{
+			WorkerTarget = nullptr;
+		}
+
+		// Variables for checking distance
+		Vector2f Dir = Vector2f();
+		float Dis = numeric_limits<int>::max() - 10000;
+
+		// Check if in range of WorkerTarget
+		if (WorkerTarget != nullptr)
+		{
+			Dir = WorkerTarget->getPosition() - Position;
+			Dis = Vector::Length(Dir);
+		}
+
+		if (Dis < MaxRange)
 		{
 			Start = Path::NearestPointIndex(Waypoints, Position);
-			End = Point;
-			Path = Path::UniformCostSearch(GraphData, Waypoints, Start, End);
-			CurrentState = States::FollowPath;
+			End = Path::NearestPointIndex(Waypoints, WorkerTarget->getPosition());
+			CurrentState = States::FollowWorker;
+		}
+		else
+		{
+			// Not in Range, generate random index
+			int Point = rand() % Waypoints->size();
+			End = Path::NearestPointIndex(Waypoints, Position);
+
+			// Don't want to go to last point
+			if (Point != End)
+			{
+				Start = Path::NearestPointIndex(Waypoints, Position);
+				End = Point;
+				Path = Path::UniformCostSearch(GraphData, Waypoints, Start, End);
+				CurrentState = States::FollowPath;
+			}
 		}
 	}
 	else if (CurrentState == States::FollowPath)
@@ -95,54 +137,57 @@ void Sweeper::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData,
 			}
 		}
 
-		// check if Worker comes into range
-		float Dis;
-
-		if (WorkerPos->size() > 0)
+		// Check if comes into range
+		if (WorkerTarget != nullptr)
 		{
-			for (int i = 0; i < WorkerPos->size(); i++)
-			{
-				Vector2f Dir = WorkerPos->at(i)->getPosition() - Position;
-				Dis = Vector::Length(Dir);
-			}
-		}
+			Vector2f Dir = WorkerTarget->getPosition() - Position;
+			float Dis = Vector::Length(Dir);
 
-		if (Dis < MaxRange)
-		{
-			CurrentState = States::Search;
-			return;
-		}
-
-		//check if reached endpoint
-		if (Start == End || Dis < MinRange)
-		{
-			if (WorkerPos->size() > 0)
-			{
-				for (int i = 0; WorkerPos->size(); i++)
-				{
-					Target = WorkerPos->at(i)->getPosition();
-				}
-			}
-			else
+			if (Dis < MaxRange)
 			{
 				CurrentState = States::Search;
 			}
 		}
-
-		if (Dis > MinRange)
+	}
+	else if (CurrentState == States::FollowWorker)
+	{
+		if (WorkerTarget != nullptr)
 		{
-			if (Path.size() > 0)
-			{
-				string PointName = Path.at(Path.size() - 1)->data().first;
-				int PointIndex = stoi(PointName);
-				Target = Waypoints->at(PointIndex);
+			// Check if comes into range
+			Vector2f Dir = WorkerTarget->getPosition() - Position;
+			float Dis = Vector::Length(Dir);
 
-				if (CheckBounds())
+			if (Dis > MaxRange)
+			{
+				CurrentState = States::Search;
+				return;
+			}
+
+			// Check if reached endpoint
+			if (Start == End || Dis < MinRange)
+			{
+				Target = WorkerTarget->getPosition();
+			}
+
+			if (Dis > MinRange)
+			{
+				if (Path.size() > 0)
 				{
-					Start = Path::NearestPointIndex(Waypoints, Position);
-					Path.pop_back();
+					string PointName = Path.at(Path.size() - 1)->data().first;
+					int PointIndex = stoi(PointName);
+					Target = Waypoints->at(PointIndex);
+
+					if (CheckBounds())
+					{
+						Start = Path::NearestPointIndex(Waypoints, Position);
+						Path.pop_back();
+					}
 				}
 			}
+		}
+		else
+		{
+			CurrentState = States::Search;
 		}
 	}
 
