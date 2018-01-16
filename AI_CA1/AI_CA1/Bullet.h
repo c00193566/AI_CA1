@@ -52,7 +52,7 @@ public:
 	/// This method sets Alive to false
 	void Dead();
 
-	/// Return AlienNestSprite the sprite component of the object.
+	/// Return BulletSprite the sprite component of the object.
 	Sprite getSprite() { return BulletSprite; };
 
 	/// Return Type a string variable that dictates the object type.
