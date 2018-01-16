@@ -44,11 +44,11 @@ void Bullet::Update(unsigned int DT)
 	Position += Velocity * Speed;
 	BulletSprite.setPosition(Position);
 
-	TimeAlive += DT / 60.0f;
+	TimeAlive += DT / 600.0f;
 
-	if (TimeAlive > 20.0f)
+	if (TimeAlive > 1.0f)
 	{
-		Alive = false;
+		Dead();
 	}
 }
 

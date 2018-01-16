@@ -1,0 +1,25 @@
+#pragma once
+#include "stdafx.h"
+#include "SFML\Graphics.hpp"
+
+using namespace sf;
+
+class Camera
+{
+private:
+	View CameraView;
+<<<<<<< HEAD
+	int Width;
+	int Height;
+=======
+	float Width;
+	float Height;
+>>>>>>> ed9d44e62a9afe8924879a548cd8c05772004308
+
+public:
+	Camera();
+	~Camera();
+	void Update(Vector2f);
+	View & getView() { return CameraView; };
+	bool Visible(Vector2f vec);
+};

@@ -1,15 +1,5 @@
 #include "Path.h"
 
-Path::Path()
-{
-
-}
-
-Path::~Path()
-{
-
-}
-
 Vector2f Path::NearestPointPosition(vector<Vector2f>* Points, Vector2f Position)
 {
 	float CurrentMinDis = numeric_limits<int>::max() - 10000;
@@ -58,8 +48,6 @@ vector<Node*> Path::UniformCostSearch(Graph<pair<string, int>, int> * GraphData,
 
 	if (Path.size() > 0)
 	{
-		string PointName = Path.at(Path.size() - 1)->data().first;
-		int PointIndex = stoi(PointName);
 		return Path;
 	}
 	else

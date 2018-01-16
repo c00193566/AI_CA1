@@ -29,9 +29,9 @@ bool Camera::Visible(Vector2f vec)
 	Right.x = CameraView.getCenter().x + (Width / 2);
 	Right.y = CameraView.getCenter().y + (Height / 2);
 
-	if (vec.x <= Right.x && vec.x >= Left.x)
+	if (vec.x - 16 <= Right.x && vec.x + 16 >= Left.x)
 	{
-		if (vec.y <= Right.y && vec.y >= Left.y)
+		if (vec.y - 16 <= Right.y && vec.y + 16 >= Left.y)
 		{
 			return false;
 		}
