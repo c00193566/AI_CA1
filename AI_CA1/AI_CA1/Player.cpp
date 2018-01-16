@@ -44,8 +44,6 @@ bool Player::Init(string Tag, Vector2f position)
 
 	Speed = 0.0f;
 
-	Friction = 0.8f;
-
 	WorkersCollected = 0;
 	MaxWorkers = 2;
 
@@ -96,8 +94,6 @@ bool Player::Init(string Tag, Texture & LoadedTexture, float x, float y)
 
 	Speed = 0.0f;
 
-	Friction = 0.1f;
-
 	return true;
 }
 
@@ -128,7 +124,7 @@ void Player::Render(RenderSystem * Renderer)
 
 void Player::Movement()
 {
-	Position += Velocity;
+	Position +=  Velocity;
 
 	PlayerSprite.setPosition(Position);
 }
@@ -173,6 +169,7 @@ void Player::SetVelocity()
 {
 	Velocity = Vector2f(sin((Orientation / 180 * 3.14f)), -cos((Orientation / 180 * 3.14f)));
 	Velocity = Vector::Normalise(Velocity);
+	Speed *= 0.99f;
 	Velocity *= Speed;
 }
 

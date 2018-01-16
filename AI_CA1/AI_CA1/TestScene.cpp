@@ -165,7 +165,10 @@ void TestScene::Render(RenderSystem *Renderer)
 	// Renderer GameObjects
 	for (int i = 0; i < Map.size(); i++)
 	{
-		Map.at(i)->Render(Renderer);
+		if (!SceneCamera.Visible(Map.at(i)->getPosition()))
+		{
+			Map.at(i)->Render(Renderer);
+		}
 		Collision::PlayerCollision(Map.at(i), PlayerObj);
 	}
 
