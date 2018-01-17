@@ -7,7 +7,7 @@
       }
     },
     "TestScene": {
-      "max_game_objects": 445,
+      "max_game_objects": 451,
       "GameObjects": [
         {
           "x": 640,
