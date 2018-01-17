@@ -45,15 +45,15 @@ void TestScene::Initialise()
 
 	// Add in Worker
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 640, 296));
-	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
+	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 1250, 104));
 	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
-	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
+	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 1280, 72));
 	Sweepers.push_back(new Sweeper("Sweeper", TextureHandler->getTexture("Sweeper"), 640, 232));
 }
 
 void TestScene::LoadGraph()
 {
-	GraphData = new Graph<pair<string, int>, int>(8);
+	GraphData = new Graph<pair<string, int>, int>(12);
 	
 	ifstream myfile;
 	
