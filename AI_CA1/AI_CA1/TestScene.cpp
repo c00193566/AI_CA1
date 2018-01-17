@@ -48,13 +48,13 @@ void TestScene::Initialise()
 	Workers.push_back(new Worker("Worker", TextureHandler->getTexture("Worker"), 608, 104));
 	Enemies.push_back(new Enemy("Enemy", TextureHandler->getTexture("Enemy"), 608, 104));
 	Nests.push_back(new AlienNest("AlienNest", TextureHandler->getTexture("AlienNest"), 640, 104));
-	Sweepers.push_back(new Sweeper("Sweeper", TextureHandler->getTexture("Sweeper"), 640, 296));
+	Sweepers.push_back(new Sweeper("Sweeper", TextureHandler->getTexture("Sweeper"), 640, 232));
 }
 
 void TestScene::LoadGraph()
 {
-	GraphData = new Graph<pair<string, int>, int>(4);
-
+	GraphData = new Graph<pair<string, int>, int>(8);
+	
 	ifstream myfile;
 	
 	int Max = numeric_limits<int>::max() - 10000;
@@ -102,6 +102,12 @@ void TestScene::Update(unsigned int DT)
 		Workers.at(i)->Repulsion(Enemies);
 		Workers.at(i)->Update(DT, GraphData, &Waypoints);
 		Collision::PlayerCollision(Workers.at(i), PlayerObj);
+
+		if (!Workers.at(i)->getAlive())
+		{
+			Workers.erase(Workers.begin() + i);
+			break;
+		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)
@@ -116,11 +122,23 @@ void TestScene::Update(unsigned int DT)
 	{
 		Enemies.at(i)->Update(DT, GraphData, &Waypoints, PlayerObj->getPosition());
 		Collision::PlayerCollision(Enemies.at(i), PlayerObj);
+		if (!Enemies.at(i)->getAlive())
+		{
+			Enemies.erase(Enemies.begin() + i);
+			break;
+		}
 	}
 	
 	for (int i = 0; i < Sweepers.size(); i++)
 	{
 		Sweepers.at(i)->Update(DT, GraphData, &Waypoints, &Workers);
+		Collision::SweeperWorker(Sweepers.at(i), Workers);
+
+		if (!Sweepers.at(i)->getAlive())
+		{
+			Sweepers.erase(Sweepers.begin() + i);
+			break;
+		}
 	}
 
 	// Update bullets
@@ -130,10 +148,16 @@ void TestScene::Update(unsigned int DT)
 		{
 			Bullets.at(i)->Update(DT);
 
+			Collision::BulletWallCollision(Map, Bullets.at(i));
+			Collision::BulletEnemy(Enemies, Bullets.at(i));
+			Collision::BulletSweeper(Sweepers, Bullets.at(i));
+			Collision::BulletNest(Nests, Bullets.at(i));
+
 			if (!Bullets.at(i)->getAlive())
 			{
 				Bullets.erase(Bullets.begin() + i);
 				CurrentBullets--;
+				break;
 			}
 		}
 	}
@@ -175,11 +199,6 @@ void TestScene::Render(RenderSystem *Renderer)
 	for (int i = 0; i < Workers.size(); i++)
 	{
 		Workers.at(i)->Render(Renderer);
-		if (!Workers.at(i)->getAlive())
-		{
-			Workers.erase(Workers.begin() + i);
-			break;
-		}
 	}
 
 	for (int i = 0; i < Nests.size(); i++)

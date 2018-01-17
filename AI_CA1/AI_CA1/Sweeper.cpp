@@ -153,6 +153,11 @@ void Sweeper::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData,
 	{
 		if (WorkerTarget != nullptr)
 		{
+			if (!WorkerTarget->getAlive())
+			{
+				CurrentState = States::Search;
+			}
+
 			// Check if comes into range
 			Vector2f Dir = WorkerTarget->getPosition() - Position;
 			float Dis = Vector::Length(Dir);
@@ -225,5 +230,15 @@ bool Sweeper::CheckBounds()
 	else
 	{
 		return false;
+	}
+}
+
+void Sweeper::DecreaseLives()
+{
+	Lives--;
+
+	if (Lives <= 0)
+	{
+		Alive = false;
 	}
 }

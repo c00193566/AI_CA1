@@ -34,7 +34,7 @@ private:
 	vector<AlienNest*> Nests;
 	vector<Bullet*> Bullets;
 	vector<Sweeper*> Sweepers;
-	int MaxBullets = 10;
+	int MaxBullets = 3;
 	int CurrentBullets = 0;
 
 	// Map Data

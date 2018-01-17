@@ -1,6 +1,4 @@
 #include "Collision.h"
-#include "AlienNest.h"
-#include "Worker.h"
 
 void Collision::PlayerCollision(GameObject * Obj, Player * PlayerObj)
 {
@@ -29,10 +27,75 @@ void Collision::PlayerCollision(GameObject * Obj, Player * PlayerObj)
 	}
 }
 
-void Collision::BulletWallCollision(GameObject * Wall, Bullet * BulletObj)
+void Collision::BulletWallCollision(vector<Basic*> Walls, Bullet * BulletObj)
 {
-	if (Wall->getSprite().getGlobalBounds().intersects(BulletObj->getSprite().getGlobalBounds()))
+	if (Walls.size() > 0)
 	{
-		BulletObj->Dead();
+		for (int i = 0; i < Walls.size(); i++)
+		{
+			if (Walls.at(i)->getType() != "Walkway")
+			{
+				if (Walls.at(i)->getSprite().getGlobalBounds().intersects(BulletObj->getSprite().getGlobalBounds()))
+				{
+					BulletObj->Dead();
+				}
+			}
+		}
+	}
+}
+
+void Collision::BulletEnemy(vector<Enemy*> Enemies, Bullet * BulletObj)
+{
+	if (Enemies.size() > 0)
+	{
+		for (int i = 0; i < Enemies.size(); i++)
+		{
+			if (Enemies.at(i)->getSprite().getGlobalBounds().intersects(BulletObj->getSprite().getGlobalBounds()))
+			{
+				BulletObj->Dead();
+				Enemies.at(i)->DecreaseLives();
+			}
+		}
+	}
+}
+
+void Collision::BulletSweeper(vector<Sweeper*> Boid, Bullet * BulletObj)
+{
+	if (Boid.size() > 0)
+	{
+		for (int i = 0; i < Boid.size(); i++)
+		{
+			if (Boid.at(i)->getSprite().getGlobalBounds().intersects(BulletObj->getSprite().getGlobalBounds()))
+			{
+				BulletObj->Dead();
+				Boid.at(i)->DecreaseLives();
+			}
+		}
+	}
+}
+
+void Collision::BulletNest(vector<AlienNest*> Boid, Bullet * BulletObj)
+{
+	if (Boid.size() > 0)
+	{
+		for (int i = 0; i < Boid.size(); i++)
+		{
+			if (Boid.at(i)->getSprite().getGlobalBounds().intersects(BulletObj->getSprite().getGlobalBounds()))
+			{
+				BulletObj->Dead();
+			}
+		}
+	}
+}
+
+void Collision::SweeperWorker(GameObject * Boid, vector<Worker*> WorkerObjs)
+{
+	for (int i = 0; i < WorkerObjs.size(); i++)
+	{
+		if (Boid->getSprite().getGlobalBounds().intersects(WorkerObjs.at(i)->getSprite().getGlobalBounds()))
+		{
+			WorkerObjs.at(i)->setAlive(false);
+			break;
+		}
 	}
 }

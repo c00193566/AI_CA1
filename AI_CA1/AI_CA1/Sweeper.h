@@ -30,7 +30,7 @@ private:
 	int End;
 	float MaxRange;
 	float MinRange;
-
+	int Lives;
 	bool Alive;
 	vector<Node*> Path;
 	Worker * WorkerTarget;
@@ -46,5 +46,7 @@ public:
 	Sprite getSprite() { return SweeperSprite; };
 	string getType() { return Type; };
 	Vector2f getPosition() { return Position; };
+	bool getAlive() { return Alive; };
 	bool CheckBounds();
+	void DecreaseLives();
 };
