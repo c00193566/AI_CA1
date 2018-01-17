@@ -48,6 +48,21 @@ static struct Vector
 
 		return degs;
 	}
+
+	static float AngleBetween(Vector2f V1, Vector2f V2)
+	{
+		float V1Length = Length(V1);
+		float V2Length = Length(V2);
+		float LengthCombined = V1Length * V2Length;
+
+		float DotProduct = (V1.x * V2.x) + (V1.y * V2.y);
+
+		float Theta = acosf(DotProduct / LengthCombined);
+
+		Theta = RadsToDegs(Theta);
+
+		return Theta;
+	}
 };
 
 class GameObject

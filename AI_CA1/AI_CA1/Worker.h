@@ -3,6 +3,7 @@
 #include "Graph.h"
 #include "GameObject.h"
 #include "Enemy.h"
+#include "Basic.h"
 #include "Path.h"
 
 /**

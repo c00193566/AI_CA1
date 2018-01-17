@@ -33,6 +33,10 @@ Enemy::Enemy(string Tag, Texture & LoadedTexture, float x, float y)
 	End = -1000;
 
 	Path = vector<Node*>();
+
+	Lives = 3;
+
+	Alive = true;
 }
 
 Enemy::~Enemy()
@@ -107,7 +111,7 @@ void Enemy::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, v
 
 		// Check if comes into range
 		Vector2f Dir = PlayerPos - Position;
-		float Dis = Vector::Length(Dir);		
+		float Dis = Vector::Length(Dir);
 
 		if (Dis < MaxRange)
 		{
@@ -184,5 +188,15 @@ bool Enemy::CheckBounds()
 	else
 	{
 		return false;
+	}
+}
+
+void Enemy::DecreaseLives()
+{
+	Lives--;
+
+	if (Lives <= 0)
+	{
+		Alive = false;
 	}
 }

@@ -72,7 +72,6 @@ void Worker::Update(unsigned int DT, Graph<pair<string, int>, int> * GraphData, 
 	}
 	else if (CurrentState == States::FollowPath)
 	{
-
 		// Check if reached endpoint
 		if (Start == End)
 		{
@@ -128,14 +127,15 @@ void Worker::Seek()
 	Velocity = Vector::Normalise(Velocity);
 
 	Orientation = Vector::GetOrientation(Orientation, Velocity);
-
-	WorkerSprite.setRotation(Orientation);
 }
+
 void Worker::OrientationToVelocity()
 {
 	Orientation += Rotation;
 	Velocity = Vector2f(sin((Orientation / 180 * 3.14f)), -cos((Orientation / 180 * 3.14f)));
 	Velocity = Vector::Normalise(Velocity);
+
+	WorkerSprite.setRotation(Orientation);
 }
 
 void Worker::Repulsion(vector<Worker*> Objs)
@@ -163,6 +163,7 @@ void Worker::Repulsion(vector<Worker*> Objs)
 		Rotation = 0;
 	}
 }
+
 void Worker::Repulsion(vector<Enemy*> Objs)
 {
 	bool InRange = false;

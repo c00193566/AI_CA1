@@ -126,6 +126,8 @@ void Player::Movement()
 {
 	Position +=  Velocity;
 
+	cout << Position.x << " , " << Position.y << endl;
+
 	PlayerSprite.setPosition(Position);
 }
 

@@ -44,6 +44,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SearchCostComparer.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Sweeper.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Worker.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sweeper.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Worker.cpp" />

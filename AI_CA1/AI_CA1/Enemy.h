@@ -40,7 +40,8 @@ class Enemy : public GameObject
 	float MinRange; ///< float for the minimum range of the Enemy.
 	int Start; ///< int for the start point of the path.
 	int End; ///< int for the end point of the path.
-
+	int Lives; ///< int the number of lives the Enemy object has.
+	bool Alive; ///< bool determines if the Enemy object is alive or not.
 	vector<Node*> Path; ///< vector storage of Node pointer for the Enemy's path.
 
 public:
@@ -84,6 +85,12 @@ public:
 	/// Return Type a string variable that dictates the object type.
 	string getType() { return Type; };
 
+	/// Return Alive a boolean variable indicating if the Enemy object is alive or not.
+	bool getAlive() { return Alive; };
+
 	/// Checks if the object is within bounds of its target.
 	bool CheckBounds();
+
+	/// This method will decrease the amount of lives the Enemy object has.
+	void DecreaseLives();
 };

@@ -13,6 +13,7 @@
 #include "Collision.h"
 #include "AlienNest.h"
 #include "Enemy.h"
+#include "Sweeper.h"
 
 typedef GraphArc<string, int> Arc;
 typedef GraphNode<pair<string, int>, int> Node;
@@ -32,7 +33,8 @@ private:
 	vector<Enemy*> Enemies;
 	vector<AlienNest*> Nests;
 	vector<Bullet*> Bullets;
-	int MaxBullets = 10;
+	vector<Sweeper*> Sweepers;
+	int MaxBullets = 3;
 	int CurrentBullets = 0;
 
 	// Map Data
