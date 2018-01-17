@@ -7,7 +7,7 @@
       }
     },
     "TestScene": {
-      "max_game_objects": 392,
+      "max_game_objects": 445,
       "GameObjects": [
         {
           "x": 640,
@@ -1648,6 +1648,198 @@
           "Type": "Walkway"
         },
         {
+          "x": 288,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 256,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 224,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 192,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 288,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 256,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 224,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 192,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 288,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 256,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 224,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 192,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 160,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 128,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 96,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 160,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 128,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 96,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 160,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 128,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 96,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 160,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 128,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 96,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 160,
+          "y": 40,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 128,
+          "y": 40,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 96,
+          "y": 40,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 64,
+          "y": 40,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 64,
+          "y": 72,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 64,
+          "y": 104,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 64,
+          "y": 136,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
+          "x": 64,
+          "y": 168,
+          "Texture": "Walkway_01",
+          "Type": "Walkway"
+        },
+        {
           "x": 576,
           "y": 264,
           "Texture": "Wall_TopLeft",
@@ -1666,8 +1858,26 @@
           "Type": "Wall"
         },
         {
+          "x": 192,
+          "y": 168,
+          "Texture": "Wall_TopLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 8,
+          "Texture": "Wall_TopLeft",
+          "Type": "Wall"
+        },
+        {
           "x": 608,
           "y": 264,
+          "Texture": "Wall_BottomRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 192,
+          "y": 200,
           "Texture": "Wall_BottomRight",
           "Type": "Wall"
         },
@@ -1684,6 +1894,18 @@
           "Type": "Wall"
         },
         {
+          "x": 192,
+          "y": 40,
+          "Texture": "Wall_BottomLeft",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 200,
+          "Texture": "Wall_BottomLeft",
+          "Type": "Wall"
+        },
+        {
           "x": 704,
           "y": 264,
           "Texture": "Wall_TopRight",
@@ -1692,6 +1914,12 @@
         {
           "x": 1088,
           "y": 168,
+          "Texture": "Wall_TopRight",
+          "Type": "Wall"
+        },
+        {
+          "x": 192,
+          "y": 8,
           "Texture": "Wall_TopRight",
           "Type": "Wall"
         },
@@ -1774,6 +2002,36 @@
           "Type": "Wall"
         },
         {
+          "x": 32,
+          "y": 168,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 136,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 104,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 72,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
+          "x": 32,
+          "y": 40,
+          "Texture": "Wall_Left",
+          "Type": "Wall"
+        },
+        {
           "x": 704,
           "y": 296,
           "Texture": "Wall_Right",
@@ -2208,6 +2466,102 @@
         {
           "x": 352,
           "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 320,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 288,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 256,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 224,
+          "y": 168,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 320,
+          "y": 40,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 288,
+          "y": 40,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 256,
+          "y": 40,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 224,
+          "y": 40,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 160,
+          "y": 200,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 128,
+          "y": 200,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 96,
+          "y": 200,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 64,
+          "y": 200,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 160,
+          "y": 8,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 128,
+          "y": 8,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 96,
+          "y": 8,
+          "Texture": "Wall_Bottom",
+          "Type": "Wall"
+        },
+        {
+          "x": 64,
+          "y": 8,
           "Texture": "Wall_Bottom",
           "Type": "Wall"
         },
